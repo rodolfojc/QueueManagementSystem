@@ -23,6 +23,11 @@ public class MainView extends GuiView {
 		
 		this.setGrid(1, 2, this.panel);
 		
+		//HEADER
+		//JPanel title = new JPanel();
+		//this.addLabel("Immigration - Queue Management System", title);
+				
+		
 		// PERSONAL DETAILS PANEL
 		JPanel personalInfo = new JPanel();
 		this.setGrid(14, 1, personalInfo);
@@ -46,7 +51,8 @@ public class MainView extends GuiView {
 		JPanel queueTable = new JPanel();
 		this.setGrid(1, 1, queueTable);
 		this.addLabel("Queue - Ordered", queueTable);
-				
+		
+		//this.panel.add(title);
 		this.panel.add(personalInfo);
 		this.panel.add(queueTable);
 		
