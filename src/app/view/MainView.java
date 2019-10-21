@@ -2,14 +2,23 @@ package app.view;
 
 import java.awt.Insets;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
 
 import app.controller.MainViewController;
 
 public class MainView extends GuiView {
 	
 	private MainViewController controller;
+	private JTextField passport;
+	private JTextField nameS;
+	private JTextField surnameS;
+	private JDateChooser dateOfArrival;
+	private JComboBox priority;
 
 	public MainView(String name, int width, int height, boolean Resizable, MainViewController controller) {
 		super(name, width, height, Resizable);
@@ -34,15 +43,15 @@ public class MainView extends GuiView {
 		this.addLabel("Personal Details", personalInfo);
 		this.addLabel(" ", personalInfo);
 		this.addLabel("Passport Number", personalInfo);
-		this.addTextField(20, personalInfo);
+		this.passport = this.addTextField(20, personalInfo);
 		this.addLabel("Name(s) - As on the passport", personalInfo);
-		this.addTextField(20, personalInfo);
+		this.nameS = this.addTextField(20, personalInfo);
 		this.addLabel("Surname(s) - As on the passport", personalInfo);
-		this.addTextField(20, personalInfo);
+		this.surnameS = this.addTextField(20, personalInfo);
 		this.addLabel("Date of Arrival", personalInfo);
-		this.addCalen(personalInfo);
+		this.dateOfArrival = this.addCalen(personalInfo);
 		this.addLabel("Priority level", personalInfo);
-		this.addComboB(priorities, personalInfo);
+		this.priority = this.addComboB(priorities, personalInfo);
 		this.addLabel(" ", personalInfo);
 		this.addButtonAll("Submit", "Add", personalInfo, this.controller);		
 		personalInfo.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
