@@ -10,7 +10,8 @@ public class Node {
 	private Priority priority;
 	
 	public Node () {
-		
+		this.next = null;
+		this.prev = null;
 	}
 	
 	public Node (Candidate candidate, Priority priority) {
@@ -24,6 +25,10 @@ public class Node {
 		this.candidate = candidate;
 		this.priority = priority;
 		
+	}
+	
+	public void displayNode() {
+		System.out.print("{"+this.candidate+"}");
 	}
 
 	public Node getNext() {
