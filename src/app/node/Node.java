@@ -8,6 +8,15 @@ public class Node {
 	private Node prev;
 	private Candidate candidate;
 	private Priority priority;
+	
+	public Node () {
+		
+	}
+	
+	public Node (Candidate candidate, Priority priority) {
+		this.candidate = candidate;
+		this.priority = priority;
+	}
 		
 	public Node (Node next, Node prev, Candidate candidate, Priority priority) {
 		this.next = next;
