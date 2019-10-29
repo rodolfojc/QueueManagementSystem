@@ -8,13 +8,18 @@ public class Node {
 	private Node prev;
 	private Candidate candidate;
 	private Priority priority;
+	// private String priority;
 	
 	public Node () {
 		this.next = null;
 		this.prev = null;
+		this.candidate = null;
+		this.priority = null;
 	}
 	
 	public Node (Candidate candidate, Priority priority) {
+		this.next = null;
+		this.prev = null;
 		this.candidate = candidate;
 		this.priority = priority;
 	}
@@ -28,7 +33,7 @@ public class Node {
 	}
 	
 	public void displayNode() {
-		System.out.print("{"+this.candidate+"}");
+		System.out.print("{"+this.candidate+"}\n");
 	}
 
 	public Node getNext() {

@@ -2,6 +2,7 @@ package app.datastructure;
 
 import app.candidate.Candidate;
 import app.node.Node;
+import app.node.Priority;
 
 public class DoublyLinkedList {
 	
@@ -34,6 +35,87 @@ public class DoublyLinkedList {
 		tempNode.setNext(this.first);
 		this.first = tempNode;
 		
+	}	
+
+	// INSERT - FIRST
+	public void insertFirst (Node myNode) {
+					
+		if (isEmpty()) {
+			this.last = myNode;
+		} else {
+			this.first.setPrev(myNode);
+		}
+		
+		myNode.setNext(this.first);
+		this.first = myNode;
+		
+	}
+	
+	// INSERTING CONDITIONS
+	public void insertNode(Node myNode) {
+	
+	Node start;
+		
+	if (isEmpty()) {
+		this.first = myNode;
+		myNode.setNext(null);
+		this.last = myNode;
+		System.out.println("Added - First" + myNode.getCandidate());		
+	} else {
+		// LOOP OVER THE LIST TO CHECK CONDITIONS FOR HIGT / MEDIUM / LOW PRIORITIES
+		// START FROM THE FIRST NODE
+		start = this.first;
+		System.out.println("Trying to add Node to HIGH");		
+		System.out.println(myNode);
+		System.out.println(this.first.getCandidate());
+		System.out.println("Node is Priority Hight: " + myNode.getPriority().equals("HIGH"));
+		if (myNode.getPriority().equals("HIGH")) {
+			while (start.getPriority().equals("HIGH")) {
+					start = start.getNext();					
+				}
+			
+			if(start.getNext() == null) {
+				System.out.println("There is not next in queu");
+				start.setNext(myNode);
+				myNode.setPrev(start);
+				this.last = myNode;
+				
+			} else {
+				myNode.setNext(start);
+				myNode.setPrev(start.getPrev());
+				start.setPrev(myNode);			
+			}
+			
+			System.out.println("Added HIGH");		
+			
+		}else if(myNode.getPriority().equals("MEDIUM")) {
+			start = this.first;
+			System.out.println("Trying Medium");
+			System.out.println(myNode);
+			System.out.println(myNode.getPriority().equals("MEDIUM"));
+			while (start.getPriority().equals("HIGH") || start.getPriority().equals("MEDIUM")) {
+				if(start.getNext() == null) {
+					start.setNext(myNode);;
+					myNode.setPrev(start);
+					this.last = myNode;					
+				} else {
+					start = start.getNext();
+				}
+			}
+			myNode.setNext(start);
+			myNode.setPrev(start.getPrev());
+			start.setPrev(myNode);
+			
+			System.out.println("Added Medium");
+		} else {
+			myNode.setPrev(this.last);
+			this.last = myNode;
+		}
+	}
+			
+	//myNode.setNext(this.first);
+	//this.first = tempNode;
+			
 	}
 	
 	//INSERT - LAST
@@ -54,9 +136,23 @@ public class DoublyLinkedList {
 		
 	}
 	
-	//
+	//INSERT - LAST
+	public void insertLast (Node myNode) {
+				
+		if(isEmpty()) {
+			this.first = myNode;
+		} else {
+			this.last.setNext(myNode);
+		}
+			
+		myNode.setPrev(this.last);
+		this.last = myNode;		
+			
+	}
+	
+	////////////////////////////////////////////////
 	// IF THE LINKEDLIST IS NOT EMPTY 
-	//
+	////////////////////////////////////////////////
 	
 	// DELETE FIRST
 	public Node deleteFirst () {
@@ -173,7 +269,7 @@ public class DoublyLinkedList {
 	
 	public void displayForward() {
 		
-		System.out.print("List First-->Last");
+		System.out.println("List First-->Last");
 		Node current = this.first;
 		while (current.getNext() != null) {
 			current.displayNode();
@@ -186,7 +282,7 @@ public class DoublyLinkedList {
 	
 	public void displayBackwards() {
 		
-		System.out.print("List First-->Last");
+		System.out.println("List First-->Last");
 		Node current = this.last;
 		while (current.getNext() != null) {
 			current.displayNode();

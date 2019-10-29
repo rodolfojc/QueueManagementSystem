@@ -9,6 +9,7 @@ public class Candidate {
 	private String name;
 	private String surname;
 	private JDateChooser dateOfArribal;
+	private Date dateOfArribal2;
 	private int passportNum;
 	private int ID;
 
@@ -16,6 +17,15 @@ public class Candidate {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfArribal = dateOfArrival;
+		this.passportNum = passportNumb;
+		this.ID = ID;
+	
+	}
+	
+	public Candidate (String name, String surname, Date dateOfArribal2, int passportNumb, int ID) {
+		this.name = name;
+		this.surname = surname;
+		this.dateOfArribal2 = dateOfArribal2;
 		this.passportNum = passportNumb;
 		this.ID = ID;
 	
