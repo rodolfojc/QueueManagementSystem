@@ -34,10 +34,10 @@ public class Main {
 		Priority myPriority1 = Priority.HIGH ;
 		Priority myPriority2 = Priority.HIGH ;
 		Priority myPriority3 = Priority.MEDIUM;
-		Priority myPriority4 = Priority.HIGH ;
+		Priority myPriority4 = Priority.LOW ;
 		Priority myPriority5 = Priority.HIGH ;
-		Priority myPriority6 = Priority.HIGH ;
-		Priority myPriority7 = Priority.HIGH ;
+		Priority myPriority6 = Priority.LOW ;
+		Priority myPriority7 = Priority.MEDIUM ;
 		
 		
 		// CREATE NODES

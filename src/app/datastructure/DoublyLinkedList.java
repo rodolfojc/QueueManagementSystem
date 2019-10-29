@@ -55,69 +55,62 @@ public class DoublyLinkedList {
 	public void insertNode(Node myNode) {
 	
 	Node start;
-		
+	
+	// IF LIST IS EMPTY
 	if (isEmpty()) {
-		this.first = myNode;
-		myNode.setNext(null);
 		this.last = myNode;
-		System.out.println("Added - First" + myNode.getCandidate());		
+		myNode.setNext(this.first);
+		this.first = myNode;		
+		
+		System.out.println("Added - First" + myNode.getCandidate());
+		
 	} else {
-		// LOOP OVER THE LIST TO CHECK CONDITIONS FOR HIGT / MEDIUM / LOW PRIORITIES
-		// START FROM THE FIRST NODE
+		
+		// 1.- LOOP OVER THE LIST STARTING IN FIRST NODE
 		start = this.first;
-		System.out.println("Trying to add Node to HIGH");		
-		System.out.println(myNode);
-		System.out.println(this.first.getCandidate());
-		System.out.println("Node is Priority Hight: " + myNode.getPriority().equals("HIGH"));
-		if (myNode.getPriority().equals("HIGH")) {
-			while (start.getPriority().equals("HIGH")) {
+		
+		// PRIORITY GREATER THAN THE FIRST IN THE QUEU
+		if (myNode.getPriority().getLevelValue() > this.first.getPriority().getLevelValue()) {
+			this.first.setPrev(myNode);
+			myNode.setNext(this.first);
+			this.first = myNode;
+		}
+		else if (myNode.getPriority().getLevelValue() == this.first.getPriority().getLevelValue()) {
+			
+			while ((myNode.getPriority().getLevelValue() == start.getPriority().getLevelValue()) && this.last != start) {
+				System.out.println(this.last != start);
+				if (start.getNext() == null) {
+					this.last = start;
+					System.out.println(this.last != start);
+				} else {
 					start = start.getNext();					
 				}
+			}
 			
-			if(start.getNext() == null) {
-				System.out.println("There is not next in queu");
-				start.setNext(myNode);
-				myNode.setPrev(start);
+			if (start == this.last) {
+				this.last.setNext(myNode);
+				myNode.setPrev(this.last);
 				this.last = myNode;
-				
 			} else {
+				// SET NODE AT NEXT FOR NEW NODE
 				myNode.setNext(start);
+				// SET NODE AT PREVEUS FOR NEW NODE
 				myNode.setPrev(start.getPrev());
-				start.setPrev(myNode);			
+				// SET CURRENT NODE TO THE NEW NODE
+				start.setPrev(myNode);		
 			}
 			
-			System.out.println("Added HIGH");		
-			
-		}else if(myNode.getPriority().equals("MEDIUM")) {
-			start = this.first;
-			System.out.println("Trying Medium");
-			System.out.println(myNode);
-			System.out.println(myNode.getPriority().equals("MEDIUM"));
-			while (start.getPriority().equals("HIGH") || start.getPriority().equals("MEDIUM")) {
-				if(start.getNext() == null) {
-					start.setNext(myNode);;
-					myNode.setPrev(start);
-					this.last = myNode;					
-				} else {
-					start = start.getNext();
-				}
-			}
-			myNode.setNext(start);
-			myNode.setPrev(start.getPrev());
-			start.setPrev(myNode);
-			
-			System.out.println("Added Medium");
-		} else {
+		}
+		else {
+			this.last.setNext(myNode);
 			myNode.setPrev(this.last);
 			this.last = myNode;
 		}
-	}
+		
+		
 			
-	//myNode.setNext(this.first);
-	//this.first = tempNode;
-			
+		}
 	}
-	
 	//INSERT - LAST
 	public void insertLast (Candidate myCandidate) {
 		
