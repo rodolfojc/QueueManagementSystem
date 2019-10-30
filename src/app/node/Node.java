@@ -33,7 +33,7 @@ public class Node {
 	}
 	
 	public void displayNode() {
-		System.out.print("{"+this.candidate+"}\n");
+		System.out.print("{"+this.candidate+"} "+this.priority+"\n");
 	}
 
 	public Node getNext() {

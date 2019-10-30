@@ -61,8 +61,9 @@ public class DoublyLinkedList {
 		this.last = myNode;
 		myNode.setNext(this.first);
 		this.first = myNode;		
+		System.out.println("Added - First" + myNode);
+		displayForward();
 		
-		System.out.println("Added - First" + myNode.getCandidate());
 		
 	} else {
 		
@@ -71,27 +72,54 @@ public class DoublyLinkedList {
 		
 		// PRIORITY GREATER THAN THE FIRST IN THE QUEU
 		if (myNode.getPriority().getLevelValue() > this.first.getPriority().getLevelValue()) {
+			System.out.println("Go 1ts " + myNode);
 			this.first.setPrev(myNode);
 			myNode.setNext(this.first);
 			this.first = myNode;
-		}
-		else if (myNode.getPriority().getLevelValue() == this.first.getPriority().getLevelValue()) {
+			displayForward();
 			
-			while ((myNode.getPriority().getLevelValue() == start.getPriority().getLevelValue()) && this.last != start) {
-				System.out.println(this.last != start);
+		}
+		else if (myNode.getPriority().getLevelValue() <= this.first.getPriority().getLevelValue()) {
+			System.out.println("Equal or less " + myNode);
+			System.out.println("Equal or less " + this.first.getCandidate());
+			while ((myNode.getPriority().getLevelValue() <= start.getPriority().getLevelValue()) && this.last != start) {
+				System.out.println("Equal or less " + myNode.getCandidate());
+				System.out.println("Equal or less " + start.getCandidate());
+				//System.out.println(this.last != start);
 				if (start.getNext() == null) {
+					System.out.println("Next is Null");
 					this.last = start;
 					System.out.println(this.last != start);
 				} else {
-					start = start.getNext();					
+					start = start.getNext();
+					System.out.println("Next Candidate: " + start.getCandidate());
 				}
 			}
 			
+			System.out.println("Start: " + start.getCandidate());
+			System.out.println("Last: " + this.last.getCandidate());
+		
 			if (start == this.last) {
-				this.last.setNext(myNode);
-				myNode.setPrev(this.last);
-				this.last = myNode;
+				if (myNode.getPriority().getLevelValue() > start.getPriority().getLevelValue()) {
+					System.out.println("Here");
+					// SET PREV ON START PREVE, NEXT NEW NODE
+					start.getPrev().setNext(myNode);
+					// SET NODE AT NEXT FOR NEW NODE
+					myNode.setNext(start);
+					// SET NODE AT PREVEUS FOR NEW NODE
+					myNode.setPrev(start.getPrev());
+					// SET CURRENT NODE TO THE NEW NODE
+					start.setPrev(myNode);					
+					this.last = start;
+				} else {
+					this.last.setNext(myNode);
+					myNode.setPrev(this.last);
+					this.last = myNode;
+				}
+				
 			} else {
+				// SET PREV ON START PREVE, NEXT NEW NODE
+				start.getPrev().setNext(myNode);
 				// SET NODE AT NEXT FOR NEW NODE
 				myNode.setNext(start);
 				// SET NODE AT PREVEUS FOR NEW NODE
@@ -102,9 +130,8 @@ public class DoublyLinkedList {
 			
 		}
 		else {
-			this.last.setNext(myNode);
-			myNode.setPrev(this.last);
-			this.last = myNode;
+			System.out.println("Something went wrong!");
+			
 		}
 		
 		
@@ -264,8 +291,8 @@ public class DoublyLinkedList {
 		
 		System.out.println("List First-->Last");
 		Node current = this.first;
-		while (current.getNext() != null) {
-			current.displayNode();
+		while (current != null) {
+			current.displayNode();			
 			current = current.getNext();
 		}
 		System.out.println();

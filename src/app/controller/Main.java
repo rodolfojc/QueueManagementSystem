@@ -60,17 +60,17 @@ public class Main {
 //		myList.insertFirst(myCandidate6);
 //		myList.insertFirst(myCandidate7);
 		
-		myList.insertNode(myNode1);
-		myList.insertNode(myNode2);
-		myList.insertNode(myNode3);
 		myList.insertNode(myNode4);
 		myList.insertNode(myNode5);
-		myList.insertNode(myNode6);
+		myList.insertNode(myNode3);
 		myList.insertNode(myNode7);
+		myList.insertNode(myNode1);
+		myList.insertNode(myNode6);
+		myList.insertNode(myNode2);
 		
 		
 		//System.out.println(myNode1.getPriority());
-				
+		System.out.println("Final......");		
 		myList.displayForward();
 				
 
