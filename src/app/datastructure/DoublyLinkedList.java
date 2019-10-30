@@ -1,5 +1,7 @@
 package app.datastructure;
 
+import java.util.ArrayList;
+
 import app.candidate.Candidate;
 import app.node.Node;
 import app.node.Priority;
@@ -8,10 +10,12 @@ public class DoublyLinkedList {
 	
 	private Node first;
 	private Node last;
+	private int size;
 	
 	public DoublyLinkedList () {
 		this.first = null;
 		this.last = null;
+		this.size = 0;
 	}
 	
 	// TO CHECK IF THE DOUBLYLINKEDLIST IS EMPTY
@@ -62,6 +66,7 @@ public class DoublyLinkedList {
 		myNode.setNext(this.first);
 		this.first = myNode;		
 		System.out.println("Added - First" + myNode);
+		this.size++;
 		displayForward();
 		
 		
@@ -76,6 +81,7 @@ public class DoublyLinkedList {
 			this.first.setPrev(myNode);
 			myNode.setNext(this.first);
 			this.first = myNode;
+			this.size++;
 			displayForward();
 			
 		}
@@ -96,8 +102,8 @@ public class DoublyLinkedList {
 				}
 			}
 			
-			System.out.println("Start: " + start.getCandidate());
-			System.out.println("Last: " + this.last.getCandidate());
+			System.out.println("Where it stopped: " + start.getCandidate());
+			System.out.println("Last in queu: " + this.last.getCandidate());
 		
 			if (start == this.last) {
 				if (myNode.getPriority().getLevelValue() > start.getPriority().getLevelValue()) {
@@ -111,10 +117,14 @@ public class DoublyLinkedList {
 					// SET CURRENT NODE TO THE NEW NODE
 					start.setPrev(myNode);					
 					this.last = start;
+					this.size++;
+					displayForward();
 				} else {
 					this.last.setNext(myNode);
 					myNode.setPrev(this.last);
 					this.last = myNode;
+					this.size++;
+					displayForward();
 				}
 				
 			} else {
@@ -125,9 +135,11 @@ public class DoublyLinkedList {
 				// SET NODE AT PREVEUS FOR NEW NODE
 				myNode.setPrev(start.getPrev());
 				// SET CURRENT NODE TO THE NEW NODE
-				start.setPrev(myNode);		
+				start.setPrev(myNode);
+				this.size++;
+				displayForward();
 			}
-			
+						
 		}
 		else {
 			System.out.println("Something went wrong!");
@@ -304,12 +316,22 @@ public class DoublyLinkedList {
 		
 		System.out.println("List First-->Last");
 		Node current = this.last;
-		while (current.getNext() != null) {
+		while (current != null) {
 			current.displayNode();
 			current = current.getNext();
 		}
 		System.out.println();
 		
+		
+	}
+			
+	public int getSize() {
+		return size;
+	}
+	
+	public String[][] convertToArrayLinkedList() {
+		
+		return null;
 		
 	}
 	

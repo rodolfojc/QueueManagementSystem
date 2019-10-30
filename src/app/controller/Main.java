@@ -31,12 +31,12 @@ public class Main {
 		Candidate myCandidate7 = new Candidate("Laura", "Churion", mydate, 1990, 7);
 					
 		// CREATE A PRIORITY
-		Priority myPriority1 = Priority.HIGH ;
-		Priority myPriority2 = Priority.HIGH ;
-		Priority myPriority3 = Priority.MEDIUM;
-		Priority myPriority4 = Priority.LOW ;
+		Priority myPriority1 = Priority.LOW ;
+		Priority myPriority2 = Priority.LOW ;
+		Priority myPriority3 = Priority.LOW;
+		Priority myPriority4 = Priority.MEDIUM ;
 		Priority myPriority5 = Priority.HIGH ;
-		Priority myPriority6 = Priority.LOW ;
+		Priority myPriority6 = Priority.HIGH ;
 		Priority myPriority7 = Priority.MEDIUM ;
 		
 		
@@ -60,17 +60,17 @@ public class Main {
 //		myList.insertFirst(myCandidate6);
 //		myList.insertFirst(myCandidate7);
 		
+		myList.insertNode(myNode1);
+		myList.insertNode(myNode2);
+		myList.insertNode(myNode3);
 		myList.insertNode(myNode4);
 		myList.insertNode(myNode5);
-		myList.insertNode(myNode3);
-		myList.insertNode(myNode7);
-		myList.insertNode(myNode1);
 		myList.insertNode(myNode6);
-		myList.insertNode(myNode2);
+		myList.insertNode(myNode7);
 		
 		
 		//System.out.println(myNode1.getPriority());
-		System.out.println("Final......");		
+		System.out.println(".......Final......");		
 		myList.displayForward();
 				
 
