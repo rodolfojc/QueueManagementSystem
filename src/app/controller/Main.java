@@ -72,6 +72,8 @@ public class Main {
 		//System.out.println(myNode1.getPriority());
 		System.out.println(".......Final......");		
 		myList.displayForward();
+		
+		System.out.println(myList.findCandidate(myCandidate2));
 				
 
 	}

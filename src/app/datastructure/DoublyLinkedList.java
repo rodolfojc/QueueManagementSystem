@@ -263,6 +263,27 @@ public class DoublyLinkedList {
 		
 	}
 	
+	public int findCandidate(Candidate target) {
+		
+		Node tempNode = this.first;
+		int pointer = 0;
+		
+		if (this.isEmpty()) {
+			System.out.println("The queu is empty");
+		} else {
+			while (tempNode.getNext() != null) {
+				pointer++;
+				if (tempNode.getCandidate() == target) {
+					return pointer;
+				} else {
+					tempNode = tempNode.getNext();
+				}
+			}
+		}
+		
+		return -1;
+	}
+	
 	// DELETE CANDIDATE
 	public Node deleteCandidate (Candidate target) {
 		
