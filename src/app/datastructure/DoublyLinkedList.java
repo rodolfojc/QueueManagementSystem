@@ -263,9 +263,12 @@ public class DoublyLinkedList {
 		
 	}
 	
+	// FIND CANDIDATE BY GIVING OBJECT
 	public int findCandidate(Candidate target) {
 		
+		// NODE TO POINT THE FIRST NODE
 		Node tempNode = this.first;
+		// POINTER TO TRACK THE POSSITION
 		int pointer = 0;
 		
 		if (this.isEmpty()) {
@@ -284,16 +287,40 @@ public class DoublyLinkedList {
 		return -1;
 	}
 	
+	// CUT QUEUE GIVING A NUMBER
+	public void cutQueu(int number) {
+		
+		// NODE TO POINT THE FIRST NODE
+		Node tempNode = this.last;
+		// POINTER TO TRACK THE POSSITION
+		int pointer = 0;
+		
+		while (tempNode != null && pointer != number) {
+			tempNode = tempNode.getPrev();
+			pointer ++;
+			System.out.println(tempNode.getCandidate());
+		}
+		
+		if(pointer == number) {
+			this.last = tempNode;
+			this.last.setNext(null);
+			
+		} else {
+			System.out.println("The queue is shorter");
+		}
+		
+	}
+	
 	// DELETE CANDIDATE
 	public Node deleteCandidate (Candidate target) {
 		
 		// NODE TO POINT THE FIRST NODE
-		Node current = this.first;
+		Node tempNode = this.first;
 		
 		// WHILE LOOP TO FIND THE TARGET IF EXIST
-		while (current.getCandidate() != target) {
-			current = current.getNext();
-				if (current.getNext() == null) {
+		while (tempNode.getCandidate() != target) {
+			tempNode = tempNode.getNext();
+				if (tempNode.getNext() == null) {
 				return null;
 			}
 		} 
@@ -301,19 +328,19 @@ public class DoublyLinkedList {
 		Node targetReturn = new Node();
 		targetReturn.setCandidate(target);
 		
-		if (current == this.first) {
-			this.first = current.getNext();
+		if (tempNode == this.first) {
+			this.first = tempNode.getNext();
 		} else {
 			// THE CURRENT PREV NODE HAS TO POINT THE NEXT NODE IN THE CURRENT NODE
-			current.getPrev().setNext(current.getNext());
+			tempNode.getPrev().setNext(tempNode.getNext());
 		}
 		
-		if (current == this.last) {
-			this.last = current.getPrev();
+		if (tempNode == this.last) {
+			this.last = tempNode.getPrev();
 			//this.last.getPrev().setNext(null);						
 		} else {
 			// THE CURRENT NEXT NODE HAS TO POINT THE PREV NODE IN THE CURRENT NODE
-			current.getNext().setPrev(current.getPrev());
+			tempNode.getNext().setPrev(tempNode.getPrev());
 		}
 		
 		return targetReturn;

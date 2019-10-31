@@ -74,6 +74,12 @@ public class Main {
 		myList.displayForward();
 		
 		System.out.println(myList.findCandidate(myCandidate2));
+		
+		//myList.deleteCandidate(myCandidate1);
+		//myList.displayForward();
+		
+		myList.cutQueu(3);
+		myList.displayForward();
 				
 
 	}
