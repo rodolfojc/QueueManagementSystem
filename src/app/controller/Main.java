@@ -14,8 +14,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//MainViewController controller = new MainViewController();
-		//new MainView("Queu Management System", 1200, 800, true, controller);
+		new MainView("Queu Management System", 1200, 800, true);
+		
+		
+		/*
+		
+		/////////////////////////////////////////
+		 * 
+		 * TESTING DATA
 		
 		//JDateChooser mydate = new JDateChooser();
 		//mydate.getDate();
@@ -81,7 +87,7 @@ public class Main {
 		myList.cutQueu(3);
 		myList.displayForward();
 				
-
+		 */
 	}
 
 }

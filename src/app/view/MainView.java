@@ -19,16 +19,43 @@ public class MainView extends GuiView {
 	private JTextField surnameS;
 	private JDateChooser dateOfArrival;
 	private JComboBox priority;
+	private String[] priorities = {"High", "Medium", "Low"};
 
-	public MainView(String name, int width, int height, boolean Resizable, MainViewController controller) {
+	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
-		this.controller = controller;
+		this.controller = new MainViewController(this);
 		this.setView();
 	}
 	
+		
+	public JTextField getPassport() {
+		return passport;
+	}
+
+	public JTextField getNameS() {
+		return nameS;
+	}
+
+	public JTextField getSurnameS() {
+		return surnameS;
+	}
+
+	public JDateChooser getDateOfArrival() {
+		return dateOfArrival;
+	}
+
+	public JComboBox getPriority() {
+		return priority;
+	}
+		
+	public String[] getPriorities() {
+		return priorities;
+	}
+
+
 	public void setView() {
 		
-		String[] priorities = {"High", "Medium", "Low"};
+		
 		
 		this.setGrid(1, 2, this.panel);
 		
@@ -51,7 +78,7 @@ public class MainView extends GuiView {
 		this.addLabel("Date of Arrival", personalInfo);
 		this.dateOfArrival = this.addCalen(personalInfo);
 		this.addLabel("Priority level", personalInfo);
-		this.priority = this.addComboB(priorities, personalInfo);
+		this.priority = this.addComboB(this.priorities, personalInfo);
 		this.addLabel(" ", personalInfo);
 		this.addButtonAll("Submit", "Add", personalInfo, this.controller);		
 		personalInfo.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));

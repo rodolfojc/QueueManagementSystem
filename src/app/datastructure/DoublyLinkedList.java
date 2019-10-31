@@ -347,6 +347,7 @@ public class DoublyLinkedList {
 		
 	}
 	
+	// DISPLAY THE QUEUE FORWARD 
 	public void displayForward() {
 		
 		System.out.println("List First-->Last");
@@ -360,9 +361,10 @@ public class DoublyLinkedList {
 		
 	}
 	
+	// DISPLAY THE QUEUE BACKWARDS 
 	public void displayBackwards() {
 		
-		System.out.println("List First-->Last");
+		System.out.println("List Last-->First");
 		Node current = this.last;
 		while (current != null) {
 			current.displayNode();
