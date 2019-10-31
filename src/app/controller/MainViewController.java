@@ -2,6 +2,7 @@ package app.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.toedter.calendar.JDateChooser;
@@ -27,18 +28,21 @@ public class MainViewController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Add")) {
-			//System.out.println("Submit Button Working!!");
-			
+						
 			String tempName = this.mainView.getNameS().getText();
 			String tempSurname = this.mainView.getSurnameS().getText();
+			
 			Date tempDate = this.mainView.getDateOfArrival().getDate();
+			SimpleDateFormat myDateSimp = new SimpleDateFormat("dd/MM/yyyy");
+			String tempDateFormat = myDateSimp.format(tempDate);
+			
 			String tempPassport = this.mainView.getPassport().getText();
 			int tempPassportInt = Integer.valueOf(tempPassport);
 			this.id ++;
 			
+			this.mainView.updateView();			
 			
-			
-			Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDate, tempPassportInt,id);
+			Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
 			
 			int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
 			String[] tempPriorityArrayStr = this.mainView.getPriorities();

@@ -1,9 +1,11 @@
 package app.view;
 
+import java.awt.Dimension;
 import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -41,6 +43,7 @@ public class MainView extends GuiView {
 	}
 
 	public JDateChooser getDateOfArrival() {
+		this.dateOfArrival.setDateFormatString("MM/yy/DD");
 		return dateOfArrival;
 	}
 
@@ -51,13 +54,12 @@ public class MainView extends GuiView {
 	public String[] getPriorities() {
 		return priorities;
 	}
-
-
+	
+	
 	public void setView() {
-		
-		
-		
-		this.setGrid(1, 2, this.panel);
+				
+		//this.setGrid(1, 3, this.panel);
+		this.setBox(this.panel, 2);
 		
 		//HEADER
 		//JPanel title = new JPanel();
@@ -85,15 +87,34 @@ public class MainView extends GuiView {
 		
 		// QUEUE TABLE
 		JPanel queueTable = new JPanel();
+		String[][] myTable = new String[100][100];
+		String[] columns = {"ID", "Name", "Surname", "Priority"};
 		this.setGrid(1, 1, queueTable);
-		this.addLabel("Queue - Ordered", queueTable);
+		JScrollPane myScrool = this.addTableS(0, myTable, columns, queueTable, "Queue First to Last");
+		//myScrool.setPreferredSize(new Dimension(800, 50));
+		
+		// ACTIONS BUTTONS
+		JPanel actionBtns = new JPanel();
+		//this.setBox(actionBtns, 1);
+		this.setGrid(3, 1, actionBtns);
+		this.addButtonAll("Delete", "Delete", actionBtns, this.controller);
+		this.addButtonAll("Update Inf", "Update", actionBtns, this.controller);
+		this.addButtonAll("Cut Queue", "Cut", actionBtns, this.controller);
+		actionBtns.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 		
 		//this.panel.add(title);
 		this.panel.add(personalInfo);
 		this.panel.add(queueTable);
+		this.panel.add(actionBtns);
 		
 		this.repaint();
 		this.validate();
+	}
+	
+	public void updateView() {
+		
+		this.panel.removeAll();
+		this.setView();
 	}
 		
 }

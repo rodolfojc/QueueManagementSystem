@@ -1,19 +1,14 @@
 package app.candidate;
 
-import java.util.Date;
-
-import com.toedter.calendar.JDateChooser;
-
 public class Candidate {
 
 	private String name;
 	private String surname;
-	private JDateChooser dateOfArribal;
-	private Date dateOfArribal2;
+	private String dateOfArribal;
 	private int passportNum;
 	private int ID;
 
-	public Candidate (String name, String surname, JDateChooser dateOfArrival, int passportNumb, int ID) {
+	public Candidate (String name, String surname, String dateOfArrival, int passportNumb, int ID) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfArribal = dateOfArrival;
@@ -22,15 +17,6 @@ public class Candidate {
 	
 	}
 	
-	public Candidate (String name, String surname, Date dateOfArribal2, int passportNumb, int ID) {
-		this.name = name;
-		this.surname = surname;
-		this.dateOfArribal2 = dateOfArribal2;
-		this.passportNum = passportNumb;
-		this.ID = ID;
-	
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -47,11 +33,11 @@ public class Candidate {
 		this.surname = surname;
 	}
 
-	public JDateChooser getDateOfArribal() {
+	public String getDateOfArribal() {
 		return dateOfArribal;
 	}
 
-	public void setDateOfArribal(JDateChooser dateOfArribal) {
+	public void setDateOfArribal(String dateOfArribal) {
 		this.dateOfArribal = dateOfArribal;
 	}
 

@@ -180,7 +180,7 @@ public class GuiView extends JFrame {
 		myScroll.setFont(new Font("Tahoma", Font.BOLD, 20));
 
 		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), title, TitledBorder.CENTER,
-				TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 20), Color.WHITE));
+				TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 20), Color.BLACK));
 
 		panel.add(myScroll);
 		return myScroll;
