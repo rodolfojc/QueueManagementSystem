@@ -2,6 +2,7 @@ package app.view;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.util.Arrays;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -22,10 +23,12 @@ public class MainView extends GuiView {
 	private JDateChooser dateOfArrival;
 	private JComboBox priority;
 	private String[] priorities = {"High", "Medium", "Low"};
+	private String[][] data;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
 		this.controller = new MainViewController(this);
+		this.data = new String[100][100];
 		this.setView();
 	}
 	
@@ -53,6 +56,10 @@ public class MainView extends GuiView {
 		
 	public String[] getPriorities() {
 		return priorities;
+	}
+	
+	public void setData(String[][] data) {
+		this.data = Arrays.copyOf(data, data.length);
 	}
 	
 	
@@ -87,10 +94,10 @@ public class MainView extends GuiView {
 		
 		// QUEUE TABLE
 		JPanel queueTable = new JPanel();
-		String[][] myTable = new String[100][100];
+		//String[][] myTable = new String[100][100];
 		String[] columns = {"ID", "Name", "Surname", "Priority"};
 		this.setGrid(1, 1, queueTable);
-		JScrollPane myScrool = this.addTableS(0, myTable, columns, queueTable, "Queue First to Last");
+		JScrollPane myScrool = this.addTableS(0, this.data, columns, queueTable, "Queue First to Last");
 		//myScrool.setPreferredSize(new Dimension(800, 50));
 		
 		// ACTIONS BUTTONS

@@ -39,19 +39,27 @@ public class MainViewController implements ActionListener {
 			String tempPassport = this.mainView.getPassport().getText();
 			int tempPassportInt = Integer.valueOf(tempPassport);
 			this.id ++;
-			
-			this.mainView.updateView();			
-			
+					
 			Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
 			
 			int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
+			System.out.println(tempPriorityInt);
 			String[] tempPriorityArrayStr = this.mainView.getPriorities();
 			String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
+			System.out.println(tempPriorityStr);
 			Priority tempPriority = Priority.valueOf(tempPriorityStr);
+			System.out.println(tempPriority);
+			
 			
 			Node tempNode = new Node(tempCandidate, tempPriority);
-			
+			System.out.println(tempNode);
+						
 			this.myList.insertNode(tempNode);
+			String[][] data = this.myList.convertToArrayLinkedList();
+			this.mainView.setData(data);
+			this.mainView.updateView();
+			
+			
 			this.myList.displayForward();
 			
 		}

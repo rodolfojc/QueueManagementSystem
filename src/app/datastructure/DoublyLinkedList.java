@@ -381,7 +381,22 @@ public class DoublyLinkedList {
 	
 	public String[][] convertToArrayLinkedList() {
 		
-		return null;
+		String[][] data = new String[this.size][4];
+		Node start = this.first;
+		int i = 0;
+		
+		
+		while (start != null) {
+			data[i][0] = String.valueOf(start.getCandidate().getID());
+			data[i][1] = start.getCandidate().getName();
+			data[i][2] = start.getCandidate().getSurname();
+			data[i][3] = String.valueOf(start.getPriority());
+			i++;
+			start = start.getNext();
+		}
+		
+		
+		return data;
 		
 	}
 	
