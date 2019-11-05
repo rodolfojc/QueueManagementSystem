@@ -12,6 +12,7 @@ import app.datastructure.DoublyLinkedList;
 import app.node.Node;
 import app.node.Priority;
 import app.view.MainView;
+import app.view.UpdateInfo;
 
 public class MainViewController implements ActionListener {
 	
@@ -63,6 +64,13 @@ public class MainViewController implements ActionListener {
 			this.myList.displayForward();
 			
 		}
+		
+		if (e.getActionCommand().equals("Update")) {
+			
+			new UpdateInfo("UPDATE", 400, 500, true);
+			
+		}
+		
 	}
 
 }
