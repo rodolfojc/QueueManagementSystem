@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
@@ -16,6 +17,7 @@ import app.controller.MainViewController;
 
 public class MainView extends GuiView {
 	
+	private ListSelectionModel myTableModel;
 	private MainViewController controller;
 	private JTextField passport;
 	private JTextField nameS;
@@ -62,7 +64,15 @@ public class MainView extends GuiView {
 		this.data = Arrays.copyOf(data, data.length);
 	}
 	
-	
+	public ListSelectionModel getMyTableModel() {
+		return myTableModel;
+	}
+
+	public void setMyTableModel(ListSelectionModel myTableModel) {
+		this.myTableModel = myTableModel;
+	}
+
+
 	public void setView() {
 				
 		//this.setGrid(1, 3, this.panel);
@@ -98,6 +108,8 @@ public class MainView extends GuiView {
 		String[] columns = {"ID", "Name", "Surname", "Priority"};
 		this.setGrid(1, 1, queueTable);
 		JScrollPane myScrool = this.addTableS(0, this.data, columns, queueTable, "Queue First to Last");
+		this.myTableModel = this.myTable[0].getSelectionModel();
+		this.myTableModel.addListSelectionListener(this.controller);
 		//myScrool.setPreferredSize(new Dimension(800, 50));
 		
 		// ACTIONS BUTTONS

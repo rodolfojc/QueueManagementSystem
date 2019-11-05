@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import com.toedter.calendar.JDateChooser;
 
 import app.candidate.Candidate;
@@ -14,7 +19,7 @@ import app.node.Priority;
 import app.view.MainView;
 import app.view.UpdateInfo;
 
-public class MainViewController implements ActionListener {
+public class MainViewController implements ActionListener, ListSelectionListener {
 	
 	private MainView mainView;
 	private DoublyLinkedList myList;
@@ -71,6 +76,18 @@ public class MainViewController implements ActionListener {
 			
 		}
 		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		
+			// RENTED TABLE LISTENER
+			if (!this.mainView.getMyTableModel().isSelectionEmpty()) {
+				
+				JOptionPane.showMessageDialog(this.mainView, "Is not empty test");
+				
+
+			}
 	}
 
 }
