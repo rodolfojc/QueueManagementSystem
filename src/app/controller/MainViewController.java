@@ -83,9 +83,16 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		
 			// RENTED TABLE LISTENER
 			if (!this.mainView.getMyTableModel().isSelectionEmpty()) {
+				this.mainView.setSelectedRow(this.mainView.getMyTableModel().getMinSelectionIndex());
 				
-				JOptionPane.showMessageDialog(this.mainView, "Is not empty test");
-				
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("Candidate selected: ID: "
+						+ this.mainView.getData(this.mainView.getSelectedRow(), 0)
+						+ ", " + ""
+						+ this.mainView.getData(this.mainView.getSelectedRow(), 1)
+						+ " " + ""
+						+ this.mainView.getData(this.mainView.getSelectedRow(), 2)
+						+ " " + ". select and Action"));
+						
 
 			}
 	}

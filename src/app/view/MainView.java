@@ -26,6 +26,7 @@ public class MainView extends GuiView {
 	private JComboBox priority;
 	private String[] priorities = {"High", "Medium", "Low"};
 	private String[][] data;
+	private int selectedRow;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
@@ -34,7 +35,20 @@ public class MainView extends GuiView {
 		this.setView();
 	}
 	
-		
+	
+			
+	public String getData(int a, int b) {
+		return data[a][b];
+	}
+
+	public int getSelectedRow() {
+		return selectedRow;
+	}
+
+	public void setSelectedRow(int selectedRow) {
+		this.selectedRow = selectedRow;
+	}
+
 	public JTextField getPassport() {
 		return passport;
 	}
