@@ -72,18 +72,20 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		
 		if (e.getActionCommand().equals("Update")) {
 			
-			new UpdateInfo("UPDATE", 400, 500, true);
-			
+			UpdateInfo update = new UpdateInfo("UPDATE", 400, 500, true);
+			update.getNameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 1));
+						
 		}
 		
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		
+						
 			// RENTED TABLE LISTENER
 			if (!this.mainView.getMyTableModel().isSelectionEmpty()) {
 				this.mainView.setSelectedRow(this.mainView.getMyTableModel().getMinSelectionIndex());
+				int position = Integer.valueOf(this.mainView.getSelectedRow()) + 1;
 				
 				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("Candidate selected: ID: "
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 0)
@@ -91,9 +93,9 @@ public class MainViewController implements ActionListener, ListSelectionListener
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 1)
 						+ " " + ""
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 2)
-						+ " " + ". select and Action"));
-						
-
+						+ " " + " POSITION = "
+						+ position + " "));
+												
 			}
 	}
 
