@@ -1,6 +1,8 @@
 package app.datastructure;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import app.candidate.Candidate;
 import app.node.Node;
@@ -381,16 +383,17 @@ public class DoublyLinkedList {
 	
 	public String[][] convertToArrayLinkedList() {
 		
-		String[][] data = new String[this.size][4];
+		String[][] data = new String[this.size][6];
 		Node start = this.first;
 		int i = 0;
-		
-		
+				
 		while (start != null) {
 			data[i][0] = String.valueOf(start.getCandidate().getID());
-			data[i][1] = start.getCandidate().getName();
-			data[i][2] = start.getCandidate().getSurname();
-			data[i][3] = String.valueOf(start.getPriority());
+			data[i][1] = String.valueOf(start.getCandidate().getPassportNum());
+			data[i][2] = start.getCandidate().getName();
+			data[i][3] = start.getCandidate().getSurname();
+			data[i][4] = start.getCandidate().getDateOfArribal();
+			data[i][5] = String.valueOf(start.getPriority());
 			i++;
 			start = start.getNext();
 		}

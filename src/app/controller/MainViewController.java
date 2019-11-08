@@ -87,14 +87,13 @@ public class MainViewController implements ActionListener, ListSelectionListener
 				this.mainView.setSelectedRow(this.mainView.getMyTableModel().getMinSelectionIndex());
 				int position = Integer.valueOf(this.mainView.getSelectedRow()) + 1;
 				
-				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("Candidate selected: ID: "
-						+ this.mainView.getData(this.mainView.getSelectedRow(), 0)
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt(" POSITION = "+position+ 
+						",  Candidate ID: "+ this.mainView.getData(this.mainView.getSelectedRow(), 0)
 						+ ", " + ""
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 1)
 						+ " " + ""
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 2)
-						+ " " + " POSITION = "
-						+ position + " "));
+						+ " " ));
 												
 			}
 	}

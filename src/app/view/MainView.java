@@ -119,7 +119,7 @@ public class MainView extends GuiView {
 		// QUEUE TABLE
 		JPanel queueTable = new JPanel();
 		//String[][] myTable = new String[100][100];
-		String[] columns = {"ID", "Name", "Surname", "Priority"};
+		String[] columns = {"ID", "Passport", "Name", "Surname", "Date of Arribal", "Priority"};
 		this.setGrid(1, 1, queueTable);
 		JScrollPane myScrool = this.addTableS(0, this.data, columns, queueTable, "Queue First to Last");
 		this.myTableModel = this.myTable[0].getSelectionModel();
