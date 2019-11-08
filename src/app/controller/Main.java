@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		new MainView("Queu Management System", 1200, 800, true);
+		new MainView("Queu Management System", 1600, 800, true);
 		
 		
 		/*

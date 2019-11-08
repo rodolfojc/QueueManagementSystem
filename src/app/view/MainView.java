@@ -1,5 +1,6 @@
 package app.view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.util.Arrays;
@@ -33,9 +34,7 @@ public class MainView extends GuiView {
 		this.controller = new MainViewController(this);
 		this.data = new String[100][100];
 		this.setView();
-	}
-	
-	
+	}	
 			
 	public String getData(int a, int b) {
 		return data[a][b];
@@ -90,7 +89,8 @@ public class MainView extends GuiView {
 	public void setView() {
 				
 		//this.setGrid(1, 3, this.panel);
-		this.setBox(this.panel, 2);
+		//this.setBox(this.panel, 2);
+		this.setBorder(this.panel);
 		
 		//HEADER
 		//JPanel title = new JPanel();
@@ -135,10 +135,13 @@ public class MainView extends GuiView {
 		this.addButtonAll("Cut Queue", "Cut", actionBtns, this.controller);
 		actionBtns.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 		
+		this.panel.add(personalInfo, BorderLayout.WEST);
+		this.panel.add(queueTable, BorderLayout.CENTER);
+		this.panel.add(actionBtns, BorderLayout.EAST);
 		//this.panel.add(title);
-		this.panel.add(personalInfo);
-		this.panel.add(queueTable);
-		this.panel.add(actionBtns);
+		//this.panel.add(personalInfo);
+		//this.panel.add(queueTable);
+		//this.panel.add(actionBtns);
 		
 		this.repaint();
 		this.validate();
