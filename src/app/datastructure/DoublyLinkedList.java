@@ -312,10 +312,12 @@ public class DoublyLinkedList {
 		if(pointer == number) {
 			this.last = tempNode;
 			this.last.setNext(null);
-			
+			this.size -= number;
 		} else {
 			System.out.println("The queue is shorter");
 		}
+		
+		
 		
 	}
 	

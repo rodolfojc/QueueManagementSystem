@@ -28,6 +28,7 @@ public class MainView extends GuiView {
 	private String[] priorities = {"High", "Medium", "Low"};
 	private String[][] data;
 	private int selectedRow;
+	private JTextField cut;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
@@ -134,7 +135,12 @@ public class MainView extends GuiView {
 		this.setGrid(3, 1, actionBtns);
 		this.addButtonAll("Delete", "Delete", actionBtns, this.controller);
 		this.addButtonAll("Update Inf", "Update", actionBtns, this.controller);
-		this.addButtonAll("Cut Queue", "Cut", actionBtns, this.controller);
+		
+		JPanel cutPanel = new JPanel();
+		this.setGrid(1, 2, cutPanel);
+		this.setCut(this.addTextField(5, cutPanel));
+		this.addButtonAll("Cut Queue", "Cut", cutPanel, this.controller);
+		actionBtns.add(cutPanel);
 		actionBtns.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 		
 		this.panel.add(personalInfo, BorderLayout.WEST);
@@ -153,6 +159,14 @@ public class MainView extends GuiView {
 		
 		this.panel.removeAll();
 		this.setView();
+	}
+
+	public JTextField getCut() {
+		return cut;
+	}
+
+	public void setCut(JTextField cut) {
+		this.cut = cut;
 	}
 		
 }
