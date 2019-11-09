@@ -33,6 +33,10 @@ public class MainViewController implements ActionListener, ListSelectionListener
 				
 	}
 	
+	public DoublyLinkedList getMyList() {
+		return myList;
+	}
+
 	public void populateQueueBy(int number) {
 		
 		for (int i=0; i < number; i++) {
@@ -129,7 +133,9 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			}
 			
 			
-			UpdateInfo update = new UpdateInfo("UPDATE", 400, 500, true);
+			UpdateInfo update = new UpdateInfo("UPDATE", 500, 800, true, this, this.mainView);
+			update.getId().setText(this.mainView.getData(this.mainView.getSelectedRow(), 0));
+			update.getId().setEditable(false);
 			update.getPassport().setText(this.mainView.getData(this.mainView.getSelectedRow(), 1));
 			update.getNameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 2));
 			update.getSurnameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 3));

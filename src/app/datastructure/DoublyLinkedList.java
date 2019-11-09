@@ -20,6 +20,12 @@ public class DoublyLinkedList {
 		this.size = 0;
 	}
 	
+	
+	
+	public Node getFirst() {
+		return first;
+	}
+
 	// TO CHECK IF THE DOUBLYLINKEDLIST IS EMPTY
 	public boolean isEmpty() {
 		return this.first == null;
@@ -348,6 +354,30 @@ public class DoublyLinkedList {
 		return targetReturn;
 		
 	}
+	
+	// DELETE NODE
+	public void deleteNode (Node target) {
+						
+		if (target == this.first) {
+			this.first = target.getNext();
+		} else {
+			// THE CURRENT PREV NODE HAS TO POINT THE NEXT NODE IN THE CURRENT NODE
+			target.getPrev().setNext(target.getNext());
+		}
+		
+		if (target == this.last) {
+			this.last = target.getPrev();
+			//this.last.getPrev().setNext(null);						
+		} else {
+			// THE CURRENT NEXT NODE HAS TO POINT THE PREV NODE IN THE CURRENT NODE
+			target.getNext().setPrev(target.getPrev());
+		}
+		
+		this.size--;
+					
+	}
+	
+	
 	
 	// DISPLAY THE QUEUE FORWARD 
 	public void displayForward() {

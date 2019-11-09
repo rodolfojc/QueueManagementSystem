@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import app.controller.MainViewController;
 import app.controller.UpdateInfoController;
 
 public class UpdateInfo extends GuiView {
@@ -20,19 +21,32 @@ public class UpdateInfo extends GuiView {
 	private JTextField surnameS;
 	private JDateChooser dateOfArrival;
 	private JComboBox priority;
+	private JTextField id;
 	private String[] priorities = {"High", "Medium", "Low"};
 	private UpdateInfoController controller;
+	//private  MainViewController mainViewController;
+	//private MainView mainView;
 
-	public UpdateInfo(String name, int width, int height, boolean Resizable) {
+	public UpdateInfo(String name, int width, int height, boolean Resizable, MainViewController mainViewController, MainView mainView) {
 		super(name, width, height, Resizable);
-		this.controller = new UpdateInfoController(this);
+		this.controller = new UpdateInfoController(this, mainViewController, mainView);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setView();
 	}
 	
 	// GETTER AND SETTER
+	
+	
 	public JTextField getPassport() {
 		return passport;
+	}
+
+	public JTextField getId() {
+		return id;
+	}
+
+	public void setId(JTextField id) {
+		this.id = id;
 	}
 
 	public void setPassport(JTextField passport) {
@@ -83,9 +97,11 @@ public class UpdateInfo extends GuiView {
 		
 		this.setBox(this.panel, 2);
 				
-		this.setGrid(14, 1, this.panel);
-		this.addLabel("UPDATE INFORMATION", this.panel);
-		this.addLabel(" ", this.panel);
+		this.setGrid(17, 1, this.panel);
+		
+		this.addLabel("UPDATE INFORMATION", this.panel);		
+		this.addLabel("ID (Cannot be UPDATED)", this.panel);
+		this.id  = this.addTextField(20, this.panel);
 		this.addLabel("Passport Number", this.panel);
 		this.passport = this.addTextField(20, this.panel);
 		this.addLabel("Name(s) - As on the passport", this.panel);
@@ -97,9 +113,11 @@ public class UpdateInfo extends GuiView {
 		this.addLabel("Priority level", this.panel);
 		this.priority = this.addComboB(this.priorities, this.panel);
 		this.addLabel(" ", this.panel);
-		this.addButtonAll("Submit", "Add", this.panel, this.controller);		
+		this.addButtonAll("UPDATE", "Update", this.panel, this.controller);
+		this.addLabel(" ", this.panel);
+		this.addButtonAll("Cancel", "Cancel", this.panel, this.controller);	
 		this.panel.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
-				
+						
 		this.repaint();
 		this.validate();
 		
