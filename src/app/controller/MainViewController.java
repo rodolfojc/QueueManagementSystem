@@ -144,6 +144,21 @@ public class MainViewController implements ActionListener, ListSelectionListener
 						
 		}
 		
+		if (e.getActionCommand().equals("Delete")) {
+			
+			Node target = this.myList.getFirst();
+			
+			while (target.getCandidate().getID() != Integer.valueOf(this.mainView.getData(this.mainView.getSelectedRow(), 0))) {
+				target = target.getNext();
+			}
+			
+			this.myList.deleteNode(target);
+			String[][] data = this.myList.convertToArrayLinkedList();
+			this.mainView.setData(data);
+			this.mainView.updateView();
+			
+		}
+		
 	}
 
 	@Override
