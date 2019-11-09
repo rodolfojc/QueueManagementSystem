@@ -4,6 +4,7 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +26,7 @@ public class UpdateInfo extends GuiView {
 	public UpdateInfo(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
 		this.controller = new UpdateInfoController(this);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setView();
 	}
 	

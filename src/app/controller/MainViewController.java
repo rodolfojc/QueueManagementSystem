@@ -2,6 +2,7 @@ package app.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -109,8 +110,31 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		
 		if (e.getActionCommand().equals("Update")) {
 			
+			String priority = this.mainView.getData(this.mainView.getSelectedRow(), 5);
+			String date = this.mainView.getData(this.mainView.getSelectedRow(), 4);
+			
+			Date myDate = null;
+			try {
+				myDate= new SimpleDateFormat("dd/MM/yyyy").parse(date);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			
+			int myPriority = 0;
+			
+			if (priority.equals("MEDIUM")) {
+				myPriority = 1;
+			} else if (priority.equals("LOW")) {
+				myPriority = 2;
+			}
+			
+			
 			UpdateInfo update = new UpdateInfo("UPDATE", 400, 500, true);
-			update.getNameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 1));
+			update.getPassport().setText(this.mainView.getData(this.mainView.getSelectedRow(), 1));
+			update.getNameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 2));
+			update.getSurnameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 3));
+			update.getDateOfArrival().setDate(myDate);
+			update.getPriority().setSelectedIndex(myPriority);
 						
 		}
 		
@@ -127,9 +151,9 @@ public class MainViewController implements ActionListener, ListSelectionListener
 				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt(" POSITION = "+position+ 
 						",  Candidate ID: "+ this.mainView.getData(this.mainView.getSelectedRow(), 0)
 						+ ", " + ""
-						+ this.mainView.getData(this.mainView.getSelectedRow(), 1)
-						+ " " + ""
 						+ this.mainView.getData(this.mainView.getSelectedRow(), 2)
+						+ " " + ""
+						+ this.mainView.getData(this.mainView.getSelectedRow(), 3)
 						+ " " ));
 												
 			}
