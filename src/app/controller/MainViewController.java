@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -28,7 +29,43 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	public MainViewController(MainView mainView) {
 		this.mainView = mainView;
 		this.myList = new DoublyLinkedList();
+				
 	}
+	
+	public void populateQueueBy(int number) {
+		
+		for (int i=0; i < number; i++) {
+			this.populateQueu();
+		}
+	}
+	
+	public void populateQueu() {
+		
+		String[] names = {"Rodolfo", "Carlos", "Juan", "Cesar", "Ana", "Maria", "Karla", "Chriss", "Roberto", "Kamil", "Fernando"};
+		String[] surnames = {"Carvajal", "Marquez", "Padron", "Velazques", "Diaz", "Molina", "Avendano", "Belandria", "Mora", "Mendez", "Carrillo"};
+		String[] dates = {"15/10/2019", "14/10/2019", "17/10/2019", "04/11/2019", "25/10/2019", "01/11/2019" };
+		String[] passaports = {"49284746", "84729292", "484943902", "84749202", "3749302", "8182012", "127129411", "3283920"};
+		String[] priorities = {"HIGH", "MEDIUM", "LOW"};
+		
+		Random r = new Random();
+		String nameSelected = names[r.nextInt(names.length)];
+		String surnameSelected = surnames[r.nextInt(surnames.length)];
+		String dateSelected = dates[r.nextInt(dates.length)];
+		int passportSelected = Integer.valueOf(passaports[r.nextInt(passaports.length)]);
+		Priority prioritiesSelected = Priority.valueOf(priorities[r.nextInt(priorities.length)]);
+		this.id ++;
+				
+		Candidate tempCandidate = new Candidate(nameSelected, surnameSelected, dateSelected, passportSelected,id);
+		Node tempNode = new Node(tempCandidate, prioritiesSelected);
+		this.myList.insertNode(tempNode);
+		String[][] data = this.myList.convertToArrayLinkedList();
+		this.mainView.setData(data);
+		this.myList.displayForward();
+	
+	}
+	
+	
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -82,7 +119,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 						
-			// RENTED TABLE LISTENER
+			
 			if (!this.mainView.getMyTableModel().isSelectionEmpty()) {
 				this.mainView.setSelectedRow(this.mainView.getMyTableModel().getMinSelectionIndex());
 				int position = Integer.valueOf(this.mainView.getSelectedRow()) + 1;

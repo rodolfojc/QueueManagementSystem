@@ -33,6 +33,7 @@ public class MainView extends GuiView {
 		super(name, width, height, Resizable);
 		this.controller = new MainViewController(this);
 		this.data = new String[100][100];
+		this.controller.populateQueueBy(10);
 		this.setView();
 	}	
 			
@@ -125,6 +126,7 @@ public class MainView extends GuiView {
 		this.myTableModel = this.myTable[0].getSelectionModel();
 		this.myTableModel.addListSelectionListener(this.controller);
 		//myScrool.setPreferredSize(new Dimension(800, 50));
+		
 		
 		// ACTIONS BUTTONS
 		JPanel actionBtns = new JPanel();

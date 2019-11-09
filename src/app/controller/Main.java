@@ -16,7 +16,7 @@ public class Main {
 		
 		new MainView("Queu Management System", 1600, 800, true);
 		
-		
+				
 		/*
 		
 		/////////////////////////////////////////
