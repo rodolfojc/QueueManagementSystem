@@ -10,10 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
@@ -35,12 +37,13 @@ public class MainView extends GuiView {
 	private JTextField cut;
 	private JTextField search;
 	private JTextField boardTextFiled;
+	private JLabel personalLabel;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
 		this.controller = new MainViewController(this);
 		this.data = new String[100][100];
-		this.controller.populateQueueBy(10);
+		this.controller.populateQueueBy(25);
 		this.setView();
 	}	
 			
@@ -108,7 +111,9 @@ public class MainView extends GuiView {
 		// PERSONAL DETAILS PANEL
 		JPanel personalInfo = new JPanel();
 		this.setGrid(14, 1, personalInfo);
-		this.addLabel("Personal Details", personalInfo);
+		this.personalLabel = this.addLabel("Personal Details", personalInfo);
+		this.personalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		this.personalLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
 		this.addLabel(" ", personalInfo);
 		this.addLabel("Passport Number", personalInfo);
 		this.passport = this.addTextField(20, personalInfo);
@@ -142,7 +147,7 @@ public class MainView extends GuiView {
 		JPanel boardPanel = new JPanel();
 		this.setGrid(2, 1, boardPanel);
 		this.boardTextFiled = this.addTextField(20, boardPanel);
-		this.boardTextFiled.setText("NOW SERVING:  ID-"+this.data[0][0]+", "+this.data[0][2]+" "+this.data[0][3]);
+		this.boardTextFiled.setText("NOW SERVING: ID-"+this.data[0][0]+", "+this.data[0][2]+" "+this.data[0][3]);
 		this.boardTextFiled.setFont(new Font("Tahoma", Font.BOLD, 35));
 		this.boardTextFiled.setBackground(new Color(59, 89, 182));
 		this.boardTextFiled.setForeground(Color.WHITE);
@@ -166,21 +171,25 @@ public class MainView extends GuiView {
 		// ACTIONS BUTTONS
 		JPanel actionBtns = new JPanel();
 		//this.setBox(actionBtns, 1);
-		this.setGrid(3, 1, actionBtns);
+		this.setGrid(4, 1, actionBtns);
+		this.addButtonAll("Next", "Next", actionBtns, this.controller);
 		this.addButtonAll("Delete", "Delete", actionBtns, this.controller);
 		this.addButtonAll("Update Inf", "Update", actionBtns, this.controller);
 		
 		JPanel cutPanel = new JPanel();
-		this.setGrid(1, 2, cutPanel);
+		this.setGrid(2, 1, cutPanel);
 		this.setCut(this.addTextField(5, cutPanel));
 		this.addButtonAll("Cut Queue", "Cut", cutPanel, this.controller);
 		actionBtns.add(cutPanel);
 		actionBtns.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 		
+		JPanel bottom = new JPanel();
+		bottom.setBorder(new EmptyBorder(new Insets(30, 0, 0, 0)));
+		
 		this.panel.add(personalInfo, BorderLayout.WEST);
 		this.panel.add(queueTable, BorderLayout.CENTER);
 		this.panel.add(actionBtns, BorderLayout.EAST);
-		//this.panel.add(boardPanel, BorderLayout.SOUTH);
+		this.panel.add(bottom, BorderLayout.SOUTH);
 		//this.panel.add(title);
 		//this.panel.add(personalInfo);
 		//this.panel.add(queueTable);

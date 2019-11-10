@@ -50,6 +50,12 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		}
 	}
 	
+	public void updateView() {
+		String[][] data = this.myList.convertToArrayLinkedList();
+		this.mainView.setData(data);
+		this.mainView.updateView();
+	}
+	
 	public void populateQueu() {
 		
 		String[] names = {"Rodolfo", "Carlos", "Juan", "Cesar", "Ana", "Maria", "Karla", "Chriss", "Roberto", "Kamil", "Fernando"};
@@ -75,7 +81,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	
 	}
 	
-public boolean registerValidation(){
+	public boolean registerValidation(){
 		
 		//VALIDATION FLAG
 		boolean valFlag = true;
@@ -122,6 +128,15 @@ public boolean registerValidation(){
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		if(e.getActionCommand().equals("Next")) {
+			this.myList.deleteNode(this.myList.getFirst());
+			String[][] data = this.myList.convertToArrayLinkedList();
+			this.mainView.setData(data);
+			this.mainView.updateView();
+			
+		}
+		
+		
 		if(e.getActionCommand().equals("Add")) {
 			
 			if (this.registerValidation()) {
@@ -155,8 +170,6 @@ public boolean registerValidation(){
 				String[][] data = this.myList.convertToArrayLinkedList();
 				this.mainView.setData(data);
 				this.mainView.updateView();
-				
-				
 				this.myList.displayForward();
 			}
 			
