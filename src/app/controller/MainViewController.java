@@ -27,6 +27,12 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	private DoublyLinkedList myList;
 	private int id = 0;
 	
+	//REGEXS
+	//MUST BE LETTER A-Z, NO EMPTY FIELD AND UP TO 24 CHARACTERS
+	private String regexGeneral = "(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$";
+	//CVV 3 - 4 DIGITS 5 - 10
+	private String regexPassport = "^([0-9]{5,10})$";
+	
 	public MainViewController(MainView mainView) {
 		this.mainView = mainView;
 		this.myList = new DoublyLinkedList();
@@ -69,6 +75,47 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	
 	}
 	
+public boolean registerValidation(){
+		
+		//VALIDATION FLAG
+		boolean valFlag = true;
+		
+		//PASSPORT
+		if(!this.mainView.getPassport().getText().matches(this.regexPassport)) {
+					
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The PASSPORT NUMBER is not correct or EMPTY! (5 - 10 digits)"),
+						"Passport Number - Error", JOptionPane.ERROR_MESSAGE);
+			// IT DOES NOT MATCH, FLAG IS SET FALSE
+					valFlag = false;
+					
+		}
+		//NAME
+		else if(!this.mainView.getNameS().getText().matches(this.regexGeneral)) {
+			
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The NAME(s) field is not correct or EMPTY!"),
+					"Name(s) - Error", JOptionPane.ERROR_MESSAGE);
+			// IT DOES NOT MATCH, FLAG IS SET FALSE
+			valFlag = false;
+		}
+		
+		// SURNAME 
+		else if(!this.mainView.getSurnameS().getText().matches(this.regexGeneral)) {
+			
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The SURNAME(s) field is not correct or EMPTY!"),
+					"Surname(s) - Error", JOptionPane.ERROR_MESSAGE);
+			// IT DOES NOT MATCH, FLAG IS SET FALSE
+			valFlag = false;
+			
+		}		
+		else {
+			
+			return valFlag;
+			
+		}
+		
+		return valFlag;
+	}
+	
 	
 	
 	
@@ -76,39 +123,42 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Add")) {
-						
-			String tempName = this.mainView.getNameS().getText();
-			String tempSurname = this.mainView.getSurnameS().getText();
 			
-			Date tempDate = this.mainView.getDateOfArrival().getDate();
-			SimpleDateFormat myDateSimp = new SimpleDateFormat("dd/MM/yyyy");
-			String tempDateFormat = myDateSimp.format(tempDate);
-			
-			String tempPassport = this.mainView.getPassport().getText();
-			int tempPassportInt = Integer.valueOf(tempPassport);
-			this.id ++;
-					
-			Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
-			
-			int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
-			System.out.println(tempPriorityInt);
-			String[] tempPriorityArrayStr = this.mainView.getPriorities();
-			String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
-			System.out.println(tempPriorityStr);
-			Priority tempPriority = Priority.valueOf(tempPriorityStr);
-			System.out.println(tempPriority);
-			
-			
-			Node tempNode = new Node(tempCandidate, tempPriority);
-			System.out.println(tempNode);
-						
-			this.myList.insertNode(tempNode);
-			String[][] data = this.myList.convertToArrayLinkedList();
-			this.mainView.setData(data);
-			this.mainView.updateView();
-			
-			
-			this.myList.displayForward();
+			if (this.registerValidation()) {
+				
+				String tempName = this.mainView.getNameS().getText();
+				String tempSurname = this.mainView.getSurnameS().getText();
+				
+				Date tempDate = this.mainView.getDateOfArrival().getDate();
+				SimpleDateFormat myDateSimp = new SimpleDateFormat("dd/MM/yyyy");
+				String tempDateFormat = myDateSimp.format(tempDate);
+				
+				String tempPassport = this.mainView.getPassport().getText();
+				int tempPassportInt = Integer.valueOf(tempPassport);
+				this.id ++;
+										
+				Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
+				
+				int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
+				System.out.println(tempPriorityInt);
+				String[] tempPriorityArrayStr = this.mainView.getPriorities();
+				String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
+				System.out.println(tempPriorityStr);
+				Priority tempPriority = Priority.valueOf(tempPriorityStr);
+				System.out.println(tempPriority);
+				
+				
+				Node tempNode = new Node(tempCandidate, tempPriority);
+				System.out.println(tempNode);
+							
+				this.myList.insertNode(tempNode);
+				String[][] data = this.myList.convertToArrayLinkedList();
+				this.mainView.setData(data);
+				this.mainView.updateView();
+				
+				
+				this.myList.displayForward();
+			}
 			
 		}
 		
