@@ -29,6 +29,7 @@ public class MainView extends GuiView {
 	private String[][] data;
 	private int selectedRow;
 	private JTextField cut;
+	private JTextField search;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
@@ -122,7 +123,16 @@ public class MainView extends GuiView {
 		JPanel queueTable = new JPanel();
 		//String[][] myTable = new String[100][100];
 		String[] columns = {"ID", "Passport", "Name", "Surname", "Date of Arribal", "Priority"};
-		this.setGrid(1, 1, queueTable);
+		this.setBorder(queueTable);
+		
+		JPanel searchPanel = new JPanel();
+		this.setBox(searchPanel, 2);
+		this.addLabel("Search by ID: ", searchPanel);
+		this.setSearch(this.addTextField(10, searchPanel));
+		this.addButtonAll("Search", "Search", searchPanel, this.controller);
+		searchPanel.setBorder(new EmptyBorder(new Insets(50, 10, 50, 300)));
+		queueTable.add(searchPanel, BorderLayout.NORTH);
+		
 		JScrollPane myScrool = this.addTableS(0, this.data, columns, queueTable, "Queue First to Last");
 		this.myTableModel = this.myTable[0].getSelectionModel();
 		this.myTableModel.addListSelectionListener(this.controller);
@@ -167,6 +177,14 @@ public class MainView extends GuiView {
 
 	public void setCut(JTextField cut) {
 		this.cut = cut;
+	}
+
+	public JTextField getSearch() {
+		return search;
+	}
+
+	public void setSearch(JTextField search) {
+		this.search = search;
 	}
 		
 }

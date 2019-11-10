@@ -169,6 +169,34 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			
 		}
 		
+		if (e.getActionCommand().equals("Search")) {
+			
+			int candidateId = Integer.valueOf(this.mainView.getSearch().getText());
+			System.out.println(candidateId);
+			
+			int pointer = 0;
+			Node start = this.myList.getFirst();
+			
+			try {
+				while (start.getCandidate().getID() != candidateId && start.getNext() != null) {
+				start = start.getNext();
+				pointer++;
+				}
+			}
+			catch (Exception error) {
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("ID did not found"));
+			}
+			
+			if (start == this.myList.getLast() && start.getCandidate().getID() != candidateId) {
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("ID did not found"));
+			}
+			else {
+				this.mainView.getMyTableModel().setSelectionInterval(pointer, pointer);				
+			}
+			
+			
+		}
+		
 	}
 
 	@Override

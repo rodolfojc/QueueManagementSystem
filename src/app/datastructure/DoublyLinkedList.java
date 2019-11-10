@@ -20,8 +20,11 @@ public class DoublyLinkedList {
 		this.size = 0;
 	}
 	
-	
-	
+		
+	public Node getLast() {
+		return last;
+	}
+
 	public Node getFirst() {
 		return first;
 	}

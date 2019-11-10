@@ -1,93 +1,40 @@
 package app.controller;
 
-import java.util.Date;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-import com.toedter.calendar.JDateChooser;
+import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
+import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
 
-import app.candidate.Candidate;
-import app.datastructure.DoublyLinkedList;
-import app.node.Node;
-import app.node.Priority;
 import app.view.MainView;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
+		try {
+            // Set cross-platform Java L&F (also called "Metal")
+		  //Plastic3DLookAndFeel.setPlasticTheme(new DarkStar());
+		  Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());	
+		  //Plastic3DLookAndFeel.setPlasticTheme(new DesertBluer());	
+		  UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
+    } 
+    catch (UnsupportedLookAndFeelException e) {
+       System.out.println(e.getStackTrace());
+    }
+    catch (ClassNotFoundException e) {
+    	System.out.println(e.getStackTrace());
+    }
+    catch (InstantiationException e) {
+    	System.out.println(e.getStackTrace());
+    }
+    catch (IllegalAccessException e) {
+    	System.out.println(e.getStackTrace());
+    }
+		
 		new MainView("Queu Management System", 1600, 800, true);
 		
-				
-		/*
-		
-		/////////////////////////////////////////
-		 * 
-		 * TESTING DATA
-		
-		//JDateChooser mydate = new JDateChooser();
-		//mydate.getDate();
-		Date mydate = new Date();
-				
-		// CREATE A CANDIDATES
-		Candidate myCandidate1 = new Candidate("Rodolfo", "Carvajal", mydate, 1987, 1);
-		Candidate myCandidate2 = new Candidate("Juan", "Velansquez", mydate, 1985, 2);
-		Candidate myCandidate3 = new Candidate("Cesar", "Padron", mydate, 1981, 3);
-		Candidate myCandidate4 = new Candidate("Lucy", "Blue", mydate, 1987, 4);
-		Candidate myCandidate5 = new Candidate("Luis", "Altube", mydate, 1978, 5);
-		Candidate myCandidate6 = new Candidate("Maria", "Montoya", mydate, 1982, 6);
-		Candidate myCandidate7 = new Candidate("Laura", "Churion", mydate, 1990, 7);
-					
-		// CREATE A PRIORITY
-		Priority myPriority1 = Priority.LOW ;
-		Priority myPriority2 = Priority.LOW ;
-		Priority myPriority3 = Priority.LOW;
-		Priority myPriority4 = Priority.MEDIUM ;
-		Priority myPriority5 = Priority.HIGH ;
-		Priority myPriority6 = Priority.HIGH ;
-		Priority myPriority7 = Priority.MEDIUM ;
-		
-		
-		// CREATE NODES
-		Node myNode1 = new Node(myCandidate1, myPriority1);
-		Node myNode2 = new Node(myCandidate2, myPriority2);
-		Node myNode3 = new Node(myCandidate3, myPriority3);
-		Node myNode4 = new Node(myCandidate4, myPriority4);
-		Node myNode5 = new Node(myCandidate5, myPriority5);
-		Node myNode6 = new Node(myCandidate6, myPriority6);
-		Node myNode7 = new Node(myCandidate7, myPriority7);
-		
-		// TRY LINKED LIST
-		DoublyLinkedList myList = new DoublyLinkedList();
-		
-//		myList.insertFirst(myCandidate1);
-//		myList.insertFirst(myCandidate2);
-//		myList.insertFirst(myCandidate3);
-//		myList.insertFirst(myCandidate4);
-//		myList.insertFirst(myCandidate5);
-//		myList.insertFirst(myCandidate6);
-//		myList.insertFirst(myCandidate7);
-		
-		myList.insertNode(myNode1);
-		myList.insertNode(myNode2);
-		myList.insertNode(myNode3);
-		myList.insertNode(myNode4);
-		myList.insertNode(myNode5);
-		myList.insertNode(myNode6);
-		myList.insertNode(myNode7);
-		
-		
-		//System.out.println(myNode1.getPriority());
-		System.out.println(".......Final......");		
-		myList.displayForward();
-		
-		System.out.println(myList.findCandidate(myCandidate2));
-		
-		//myList.deleteCandidate(myCandidate1);
-		//myList.displayForward();
-		
-		myList.cutQueu(3);
-		myList.displayForward();
-				
-		 */
+			
 	}
 
 }
