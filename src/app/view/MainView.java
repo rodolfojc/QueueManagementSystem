@@ -1,9 +1,13 @@
 package app.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -30,6 +34,7 @@ public class MainView extends GuiView {
 	private int selectedRow;
 	private JTextField cut;
 	private JTextField search;
+	private JTextField boardTextFiled;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
@@ -113,6 +118,12 @@ public class MainView extends GuiView {
 		this.surnameS = this.addTextField(20, personalInfo);
 		this.addLabel("Date of Arrival", personalInfo);
 		this.dateOfArrival = this.addCalen(personalInfo);
+		Date calToday = new Date();
+		this.dateOfArrival.setDate(calToday);
+		Calendar calMinBirth = Calendar.getInstance();
+		calMinBirth.add(Calendar.MONTH, -12);
+		this.dateOfArrival.setMinSelectableDate(calMinBirth.getTime());
+		this.dateOfArrival.setMaxSelectableDate(calToday);
 		this.addLabel("Priority level", personalInfo);
 		this.priority = this.addComboB(this.priorities, personalInfo);
 		this.addLabel(" ", personalInfo);
@@ -122,17 +133,30 @@ public class MainView extends GuiView {
 		// QUEUE TABLE
 		JPanel queueTable = new JPanel();
 		//String[][] myTable = new String[100][100];
-		String[] columns = {"ID", "Passport", "Name", "Surname", "Date of Arribal", "Priority"};
 		this.setBorder(queueTable);
 		
+		
+	//	this.setGrid(1, 1, boardPanel);
+	//	this.boardTextFiled = this.addTextField(20, boardPanel);
+				
+		JPanel boardPanel = new JPanel();
+		this.setGrid(2, 1, boardPanel);
+		this.boardTextFiled = this.addTextField(20, boardPanel);
+		this.boardTextFiled.setText("NOW SERVING:  ID-"+this.data[0][0]+", "+this.data[0][2]+" "+this.data[0][3]);
+		this.boardTextFiled.setFont(new Font("Tahoma", Font.BOLD, 35));
+		this.boardTextFiled.setBackground(new Color(59, 89, 182));
+		this.boardTextFiled.setForeground(Color.WHITE);
+		
 		JPanel searchPanel = new JPanel();
-		this.setBox(searchPanel, 2);
 		this.addLabel("Search by ID: ", searchPanel);
 		this.setSearch(this.addTextField(10, searchPanel));
 		this.addButtonAll("Search", "Search", searchPanel, this.controller);
 		searchPanel.setBorder(new EmptyBorder(new Insets(50, 10, 50, 300)));
-		queueTable.add(searchPanel, BorderLayout.NORTH);
+		boardPanel.add(searchPanel);
+		queueTable.add(boardPanel, BorderLayout.NORTH);
+		//queueTable.add(searchPanel, BorderLayout.NORTH);
 		
+		String[] columns = {"ID", "Passport", "Name", "Surname", "Date of Arribal", "Priority"};
 		JScrollPane myScrool = this.addTableS(0, this.data, columns, queueTable, "Queue First to Last");
 		this.myTableModel = this.myTable[0].getSelectionModel();
 		this.myTableModel.addListSelectionListener(this.controller);
@@ -156,6 +180,7 @@ public class MainView extends GuiView {
 		this.panel.add(personalInfo, BorderLayout.WEST);
 		this.panel.add(queueTable, BorderLayout.CENTER);
 		this.panel.add(actionBtns, BorderLayout.EAST);
+		//this.panel.add(boardPanel, BorderLayout.SOUTH);
 		//this.panel.add(title);
 		//this.panel.add(personalInfo);
 		//this.panel.add(queueTable);
