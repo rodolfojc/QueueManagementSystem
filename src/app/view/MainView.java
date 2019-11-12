@@ -163,7 +163,8 @@ public class MainView extends GuiView {
 		this.addLabel("Cut Queu by: ", searchPanel);
 		this.setCutBox(this.addComboB(numbers, searchPanel));
 		this.addButtonAll("Cut!", "Cut", searchPanel, this.controller);
-		searchPanel.setBorder(new EmptyBorder(new Insets(50, 10, 50, 300)));
+		this.addLabel("Total ["+this.data.length+"]", searchPanel);
+		searchPanel.setBorder(new EmptyBorder(new Insets(50, 10, 50, 200)));
 		boardPanel.add(searchPanel);
 		queueTable.add(boardPanel, BorderLayout.NORTH);
 		//queueTable.add(searchPanel, BorderLayout.NORTH);
@@ -198,12 +199,7 @@ public class MainView extends GuiView {
 		this.panel.add(queueTable, BorderLayout.CENTER);
 		this.panel.add(actionBtns, BorderLayout.EAST);
 		this.panel.add(bottom, BorderLayout.SOUTH);
-						
-		//this.panel.add(title);
-		//this.panel.add(personalInfo);
-		//this.panel.add(queueTable);
-		//this.panel.add(actionBtns);
-		
+				
 		this.repaint();
 		this.validate();
 		

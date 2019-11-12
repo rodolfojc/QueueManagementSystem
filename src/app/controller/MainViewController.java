@@ -167,6 +167,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 				System.out.println(tempNode);
 							
 				this.myList.insertNode(tempNode);
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate has been ADDED!"));
 				String[][] data = this.myList.convertToArrayLinkedList();
 				this.mainView.setData(data);
 				this.mainView.updateView();
@@ -204,6 +205,8 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			update.getSurnameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 3));
 			update.getDateOfArrival().setDate(myDate);
 			update.getPriority().setSelectedIndex(myPriority);
+			
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate's information has been UPDATED!"));
 						
 		}
 		
@@ -216,6 +219,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			}
 			
 			this.myList.deleteNode(target);
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate has been DELETED!"));
 			String[][] data = this.myList.convertToArrayLinkedList();
 			this.mainView.setData(data);
 			this.mainView.updateView();
@@ -226,6 +230,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			
 			int numberCandidate = Integer.valueOf((String) this.mainView.getCutBox().getSelectedItem());
 			if(this.myList.cutQueu(numberCandidate)) {
+				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("Last "+numberCandidate+" Candiates, have been REMOVED!"));
 				String[][] data = this.myList.convertToArrayLinkedList();
 				this.mainView.setData(data);
 				this.mainView.updateView();
