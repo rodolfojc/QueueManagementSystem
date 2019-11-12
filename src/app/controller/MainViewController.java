@@ -224,7 +224,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		
 		if (e.getActionCommand().equals("Cut")) {
 			
-			int numberCandidate = Integer.valueOf(this.mainView.getCut().getText());
+			int numberCandidate = Integer.valueOf((String) this.mainView.getCutBox().getSelectedItem());
 			this.myList.cutQueu(numberCandidate);
 			String[][] data = this.myList.convertToArrayLinkedList();
 			this.mainView.setData(data);
@@ -258,6 +258,10 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			}
 			
 			
+		}
+		
+		if (e.getActionCommand().equals("Exit")) {
+			System.exit(0);
 		}
 		
 	}

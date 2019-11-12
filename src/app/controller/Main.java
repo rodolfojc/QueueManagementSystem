@@ -32,7 +32,7 @@ public class Main {
     	System.out.println(e.getStackTrace());
     }
 		
-		new MainView("Queu Management System", 1600, 800, true);
+		new MainView("Queu Management System", 1800, 800, true);
 		
 			
 	}

@@ -38,6 +38,7 @@ public class MainView extends GuiView {
 	private JTextField search;
 	private JTextField boardTextFiled;
 	private JLabel personalLabel;
+	private JComboBox cutBox;
 
 	public MainView(String name, int width, int height, boolean Resizable) {
 		super(name, width, height, Resizable);
@@ -148,14 +149,19 @@ public class MainView extends GuiView {
 		this.setGrid(2, 1, boardPanel);
 		this.boardTextFiled = this.addTextField(20, boardPanel);
 		this.boardTextFiled.setText("NOW SERVING: ID-"+this.data[0][0]+", "+this.data[0][2]+" "+this.data[0][3]);
+		this.boardTextFiled.setHorizontalAlignment(SwingConstants.CENTER);
 		this.boardTextFiled.setFont(new Font("Tahoma", Font.BOLD, 35));
 		this.boardTextFiled.setBackground(new Color(59, 89, 182));
 		this.boardTextFiled.setForeground(Color.WHITE);
 		
 		JPanel searchPanel = new JPanel();
+		String[] numbers = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"}; 
 		this.addLabel("Search by ID: ", searchPanel);
 		this.setSearch(this.addTextField(10, searchPanel));
 		this.addButtonAll("Search", "Search", searchPanel, this.controller);
+		this.addLabel("Cut Queu by: ", searchPanel);
+		this.setCutBox(this.addComboB(numbers, searchPanel));
+		this.addButtonAll("Cut!", "Cut", searchPanel, this.controller);
 		searchPanel.setBorder(new EmptyBorder(new Insets(50, 10, 50, 300)));
 		boardPanel.add(searchPanel);
 		queueTable.add(boardPanel, BorderLayout.NORTH);
@@ -175,12 +181,13 @@ public class MainView extends GuiView {
 		this.addButtonAll("Next", "Next", actionBtns, this.controller);
 		this.addButtonAll("Delete", "Delete", actionBtns, this.controller);
 		this.addButtonAll("Update Inf", "Update", actionBtns, this.controller);
+		this.addButtonAll("Exit", "Exit", actionBtns, this.controller);
 		
-		JPanel cutPanel = new JPanel();
-		this.setGrid(2, 1, cutPanel);
-		this.setCut(this.addTextField(5, cutPanel));
-		this.addButtonAll("Cut Queue", "Cut", cutPanel, this.controller);
-		actionBtns.add(cutPanel);
+//		JPanel cutPanel = new JPanel();
+//		this.setGrid(2, 1, cutPanel);
+//		this.setCut(this.addTextField(5, cutPanel));
+//		this.addButtonAll("Cut Queue", "Cut", cutPanel, this.controller);
+//		actionBtns.add(cutPanel);
 		actionBtns.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 		
 		JPanel bottom = new JPanel();
@@ -219,6 +226,14 @@ public class MainView extends GuiView {
 
 	public void setSearch(JTextField search) {
 		this.search = search;
+	}
+
+	public JComboBox getCutBox() {
+		return cutBox;
+	}
+
+	public void setCutBox(JComboBox cutBox) {
+		this.cutBox = cutBox;
 	}
 		
 }
