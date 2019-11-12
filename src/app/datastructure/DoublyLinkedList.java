@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import app.candidate.Candidate;
 import app.node.Node;
 import app.node.Priority;
@@ -299,17 +301,21 @@ public class DoublyLinkedList {
 	}
 	
 	// CUT QUEUE GIVING A NUMBER
-	public void cutQueu(int number) {
+	public boolean cutQueu(int number) {
 		
 		// NODE TO POINT THE FIRST NODE
 		Node tempNode = this.last;
 		// POINTER TO TRACK THE POSSITION
 		int pointer = 0;
 		
-		while (tempNode != null && pointer != number) {
+		while (tempNode.getPrev() != null && pointer != number) {
 			tempNode = tempNode.getPrev();
 			pointer ++;
 			System.out.println(tempNode.getCandidate());
+		}
+		
+		if(tempNode.getPrev() == null) {
+			return false;
 		}
 		
 		if(pointer == number) {
@@ -320,6 +326,7 @@ public class DoublyLinkedList {
 			System.out.println("The queue is shorter");
 		}
 		
+		return true;
 		
 		
 	}
