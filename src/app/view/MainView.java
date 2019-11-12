@@ -11,6 +11,7 @@ import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -197,6 +198,7 @@ public class MainView extends GuiView {
 		this.panel.add(queueTable, BorderLayout.CENTER);
 		this.panel.add(actionBtns, BorderLayout.EAST);
 		this.panel.add(bottom, BorderLayout.SOUTH);
+						
 		//this.panel.add(title);
 		//this.panel.add(personalInfo);
 		//this.panel.add(queueTable);
@@ -204,6 +206,19 @@ public class MainView extends GuiView {
 		
 		this.repaint();
 		this.validate();
+		
+		this.selectedRow = 0;
+		this.getMyTableModel().setSelectionInterval(this.selectedRow, this.selectedRow);	
+		
+//		JOptionPane.showMessageDialog(this, this.addLabelOpt(" POSITION = "+this.selectedRow+ 
+//				",  Candidate ID: "+ this.getData(this.getSelectedRow(), 0)
+//				+ ", " + ""
+//				+ this.getData(this.getSelectedRow(), 2)
+//				+ " " + ""
+//				+ this.getData(this.getSelectedRow(), 3)
+//				+ " " ));
+		
+		
 	}
 	
 	public void updateView() {
