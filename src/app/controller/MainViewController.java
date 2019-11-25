@@ -39,7 +39,15 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		this.myList = new DoublyLinkedList();
 				
 	}
-		
+			
+	public String getRegexGeneral() {
+		return regexGeneral;
+	}
+
+	public String getRegexPassport() {
+		return regexPassport;
+	}
+
 	public DoublyLinkedList getMyList() {
 		return myList;
 	}
