@@ -18,6 +18,7 @@ import app.candidate.Candidate;
 import app.datastructure.DoublyLinkedList;
 import app.node.Node;
 import app.node.Priority;
+import app.view.GuiView;
 import app.view.MainView;
 import app.view.UpdateInfo;
 
@@ -27,7 +28,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	private DoublyLinkedList myList;
 	private int id = 0;
 	
-	//REGEXS
+	//REGEX(s)
 	//MUST BE LETTER A-Z, NO EMPTY FIELD AND UP TO 24 CHARACTERS
 	private String regexGeneral = "(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$";
 	//CVV 3 - 4 DIGITS 5 - 10
@@ -38,7 +39,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		this.myList = new DoublyLinkedList();
 				
 	}
-	
+		
 	public DoublyLinkedList getMyList() {
 		return myList;
 	}
@@ -81,33 +82,33 @@ public class MainViewController implements ActionListener, ListSelectionListener
 	
 	}
 	
-	public boolean registerValidation(){
+	public boolean registerValidation(GuiView myView, String passport, String passportRegex, String name, String generalRegex, String surname){
 		
 		//VALIDATION FLAG
 		boolean valFlag = true;
 		
 		//PASSPORT
-		if(!this.mainView.getPassport().getText().matches(this.regexPassport)) {
+		if(!passport.matches(passportRegex)) {
 					
-			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The PASSPORT NUMBER is not correct or EMPTY! (5 - 10 digits)"),
+			JOptionPane.showMessageDialog(myView, myView.addLabelOpt("The PASSPORT NUMBER is not correct or EMPTY! (5 - 10 digits)"),
 						"Passport Number - Error", JOptionPane.ERROR_MESSAGE);
 			// IT DOES NOT MATCH, FLAG IS SET FALSE
 					valFlag = false;
 					
 		}
 		//NAME
-		else if(!this.mainView.getNameS().getText().matches(this.regexGeneral)) {
+		else if(!name.matches(generalRegex)) {
 			
-			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The NAME(s) field is not correct or EMPTY!"),
+			JOptionPane.showMessageDialog(myView, myView.addLabelOpt("The NAME(s) field is not correct or EMPTY!"),
 					"Name(s) - Error", JOptionPane.ERROR_MESSAGE);
 			// IT DOES NOT MATCH, FLAG IS SET FALSE
 			valFlag = false;
 		}
 		
 		// SURNAME 
-		else if(!this.mainView.getSurnameS().getText().matches(this.regexGeneral)) {
+		else if(!surname.matches(generalRegex)) {
 			
-			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The SURNAME(s) field is not correct or EMPTY!"),
+			JOptionPane.showMessageDialog(myView, myView.addLabelOpt("The SURNAME(s) field is not correct or EMPTY!"),
 					"Surname(s) - Error", JOptionPane.ERROR_MESSAGE);
 			// IT DOES NOT MATCH, FLAG IS SET FALSE
 			valFlag = false;
@@ -121,10 +122,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		
 		return valFlag;
 	}
-	
-	
-	
-	
+		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -134,44 +132,44 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			this.mainView.setData(data);
 			this.mainView.updateView();
 			
-		}
-		
+		}		
 		
 		if(e.getActionCommand().equals("Add")) {
 			
-			if (this.registerValidation()) {
+			if (this.registerValidation(this.mainView, this.mainView.getPassport().getText(), this.regexPassport, this.mainView.getNameS().getText(),
+					this.regexGeneral, this.mainView.getSurnameS().getText())) {
 				
-				String tempName = this.mainView.getNameS().getText();
-				String tempSurname = this.mainView.getSurnameS().getText();
-				
-				Date tempDate = this.mainView.getDateOfArrival().getDate();
-				SimpleDateFormat myDateSimp = new SimpleDateFormat("dd/MM/yyyy");
-				String tempDateFormat = myDateSimp.format(tempDate);
-				
-				String tempPassport = this.mainView.getPassport().getText();
-				int tempPassportInt = Integer.valueOf(tempPassport);
-				this.id ++;
-										
-				Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
-				
-				int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
-				System.out.println(tempPriorityInt);
-				String[] tempPriorityArrayStr = this.mainView.getPriorities();
-				String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
-				System.out.println(tempPriorityStr);
-				Priority tempPriority = Priority.valueOf(tempPriorityStr);
-				System.out.println(tempPriority);
-				
-				
-				Node tempNode = new Node(tempCandidate, tempPriority);
-				System.out.println(tempNode);
-							
-				this.myList.insertNode(tempNode);
-				JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate has been ADDED!"));
-				String[][] data = this.myList.convertToArrayLinkedList();
-				this.mainView.setData(data);
-				this.mainView.updateView();
-				this.myList.displayForward();
+					String tempName = this.mainView.getNameS().getText();
+					String tempSurname = this.mainView.getSurnameS().getText();
+					
+					Date tempDate = this.mainView.getDateOfArrival().getDate();
+					SimpleDateFormat myDateSimp = new SimpleDateFormat("dd/MM/yyyy");
+					String tempDateFormat = myDateSimp.format(tempDate);
+					
+					String tempPassport = this.mainView.getPassport().getText();
+					int tempPassportInt = Integer.valueOf(tempPassport);
+					this.id ++;
+											
+					Candidate tempCandidate = new Candidate(tempName, tempSurname, tempDateFormat, tempPassportInt,id);
+					
+					int tempPriorityInt = this.mainView.getPriority().getSelectedIndex();
+					System.out.println(tempPriorityInt);
+					String[] tempPriorityArrayStr = this.mainView.getPriorities();
+					String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
+					System.out.println(tempPriorityStr);
+					Priority tempPriority = Priority.valueOf(tempPriorityStr);
+					System.out.println(tempPriority);
+					
+					
+					Node tempNode = new Node(tempCandidate, tempPriority);
+					System.out.println(tempNode);
+								
+					this.myList.insertNode(tempNode);
+					JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate has been ADDED!"));
+					String[][] data = this.myList.convertToArrayLinkedList();
+					this.mainView.setData(data);
+					this.mainView.updateView();
+					this.myList.displayForward();
 			}
 			
 		}
@@ -205,9 +203,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 			update.getSurnameS().setText(this.mainView.getData(this.mainView.getSelectedRow(), 3));
 			update.getDateOfArrival().setDate(myDate);
 			update.getPriority().setSelectedIndex(myPriority);
-			
-			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate's information has been UPDATED!"));
-						
+									
 		}
 		
 		if (e.getActionCommand().equals("Delete")) {

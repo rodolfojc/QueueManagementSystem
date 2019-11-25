@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import app.candidate.Candidate;
 import app.node.Node;
 import app.node.Priority;
@@ -22,7 +24,8 @@ public class UpdateInfoController implements ActionListener {
 		this.mainViewController = mainViewController;
 		this.mainView = mainView;
 	}
-
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -31,7 +34,7 @@ public class UpdateInfoController implements ActionListener {
 		}
 		
 		if (e.getActionCommand().equals("Update")) {
-			
+									
 			Node tempNode = this.mainViewController.getMyList().getFirst();
 			int id = Integer.valueOf(this.updateInfo.getId().getText());
 			
@@ -46,7 +49,9 @@ public class UpdateInfoController implements ActionListener {
 			int tempPriorityInt = this.updateInfo.getPriority().getSelectedIndex();
 			String[] tempPriorityArrayStr = this.mainView.getPriorities();
 			String tempPriorityStr = tempPriorityArrayStr[tempPriorityInt].toUpperCase();
-			Priority tempPriority = Priority.valueOf(tempPriorityStr);			
+			Priority tempPriority = Priority.valueOf(tempPriorityStr);
+			
+			JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The Candidate's information has been UPDATED!"));
 			
 			while (tempNode.getCandidate().getID() != id ) {
 				tempNode = tempNode.getNext();				
