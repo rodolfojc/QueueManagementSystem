@@ -12,29 +12,25 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		// THEME FOR GUI INTERFACE USING JGOODIES LIBRARY
 		try {
-            // Set cross-platform Java L&F (also called "Metal")
-		  //Plastic3DLookAndFeel.setPlasticTheme(new DarkStar());
-		  Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());	
-		  //Plastic3DLookAndFeel.setPlasticTheme(new DesertBluer());	
-		  UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
-    } 
-    catch (UnsupportedLookAndFeelException e) {
-       System.out.println(e.getStackTrace());
-    }
-    catch (ClassNotFoundException e) {
-    	System.out.println(e.getStackTrace());
-    }
-    catch (InstantiationException e) {
-    	System.out.println(e.getStackTrace());
-    }
-    catch (IllegalAccessException e) {
-    	System.out.println(e.getStackTrace());
-    }
-		
-		new MainView("Queu Management System", 1800, 800, true);
-		
 			
+			Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());			
+			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
+			
+		} catch (UnsupportedLookAndFeelException e) {
+			System.out.println(e.getStackTrace());
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getStackTrace());
+		} catch (InstantiationException e) {
+			System.out.println(e.getStackTrace());
+		} catch (IllegalAccessException e) {
+			System.out.println(e.getStackTrace());
+		}
+		
+		// NEW INSTANCE OF THE MAIN VIEW
+		new MainView("Queu Management System", 1800, 800, true);
+
 	}
 
 }
