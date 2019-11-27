@@ -4,12 +4,13 @@ import app.candidate.Candidate;
 
 public class Node {
 
+	// ATTRIBUTES
 	private Node next;
 	private Node prev;
 	private Candidate candidate;
 	private Priority priority;
-	// private String priority;
 	
+	// DEFAULT CONTRUCTOR
 	public Node () {
 		this.next = null;
 		this.prev = null;
@@ -17,13 +18,15 @@ public class Node {
 		this.priority = null;
 	}
 	
+	// CUSTOM CONSTRUCTOR PASSING IN CADIDATE AND PRIORITY
 	public Node (Candidate candidate, Priority priority) {
 		this.next = null;
 		this.prev = null;
 		this.candidate = candidate;
 		this.priority = priority;
 	}
-		
+	
+	// CUSTOM CONSTRUCTOR PASSING IN CADIDATE, PRIORITY, AND THE NODES THAT ARE PREV AND NEXT
 	public Node (Node next, Node prev, Candidate candidate, Priority priority) {
 		this.next = next;
 		this.prev = prev;
@@ -32,10 +35,12 @@ public class Node {
 		
 	}
 	
+	// METHOD TO DISPLAY THE NODE INFOMATION - CANDIDATE, AND PRIORITY
 	public void displayNode() {
 		System.out.print("{"+this.candidate+"} "+this.priority+"\n");
 	}
-
+	
+	// GETTER AND SETTERS
 	public Node getNext() {
 		return next;
 	}
