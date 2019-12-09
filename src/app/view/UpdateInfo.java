@@ -1,42 +1,36 @@
 package app.view;
 
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import com.toedter.calendar.JDateChooser;
-
 import app.controller.MainViewController;
 import app.controller.UpdateInfoController;
 
 public class UpdateInfo extends GuiView {
 
+	// GLOBAL VARIABLES
 	private JTextField passport;
 	private JTextField nameS;
 	private JTextField surnameS;
 	private JDateChooser dateOfArrival;
 	private JComboBox priority;
 	private JTextField id;
-	private String[] priorities = {"High", "Medium", "Low"};
+	private String[] priorities = { "High", "Medium", "Low" };
 	private UpdateInfoController controller;
-	//private  MainViewController mainViewController;
-	//private MainView mainView;
 
-	public UpdateInfo(String name, int width, int height, boolean Resizable, MainViewController mainViewController, MainView mainView) {
+	// DEFAULT CONTRUCTOR
+	public UpdateInfo(String name, int width, int height, boolean Resizable, MainViewController mainViewController,
+			MainView mainView) {
 		super(name, width, height, Resizable);
 		this.controller = new UpdateInfoController(this, mainViewController, mainView);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setView();
 	}
-	
+
 	// GETTER AND SETTER
-	
-	
 	public JTextField getPassport() {
 		return passport;
 	}
@@ -94,14 +88,15 @@ public class UpdateInfo extends GuiView {
 	}
 
 	public void setView() {
-		
+
+		// LAYOUT MAIN PANEL
 		this.setBox(this.panel, 2);
-				
 		this.setGrid(17, 1, this.panel);
-		
-		this.addLabel("UPDATE INFORMATION", this.panel);		
+
+		// UPDATE INFORMATION SECTION
+		this.addLabel("UPDATE INFORMATION", this.panel);
 		this.addLabel("ID (Cannot be UPDATED)", this.panel);
-		this.id  = this.addTextField(20, this.panel);
+		this.id = this.addTextField(20, this.panel);
 		this.addLabel("Passport Number", this.panel);
 		this.passport = this.addTextField(20, this.panel);
 		this.addLabel("Name(s) - As on the passport", this.panel);
@@ -115,12 +110,12 @@ public class UpdateInfo extends GuiView {
 		this.addLabel(" ", this.panel);
 		this.addButtonAll("UPDATE", "Update", this.panel, this.controller);
 		this.addLabel(" ", this.panel);
-		this.addButtonAll("Cancel", "Cancel", this.panel, this.controller);	
+		this.addButtonAll("Cancel", "Cancel", this.panel, this.controller);
 		this.panel.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
-						
+
 		this.repaint();
 		this.validate();
-		
+
 	}
 
 }
