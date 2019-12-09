@@ -2,21 +2,24 @@ package app.candidate;
 
 public class Candidate {
 
+	// ATTRIBUTESS
 	private String name;
 	private String surname;
 	private String dateOfArribal;
 	private int passportNum;
 	private int ID;
 
-	public Candidate (String name, String surname, String dateOfArrival, int passportNumb, int ID) {
+	// DEFAULT CONSTRCUCTOR
+	public Candidate(String name, String surname, String dateOfArrival, int passportNumb, int ID) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfArribal = dateOfArrival;
 		this.passportNum = passportNumb;
 		this.ID = ID;
-	
+
 	}
-	
+
+	// GETTERS AND SETTERS
 	public String getName() {
 		return name;
 	}
@@ -48,7 +51,7 @@ public class Candidate {
 	public void setPassportNum(int passportNum) {
 		this.passportNum = passportNum;
 	}
-	
+
 	public int getID() {
 		return ID;
 	}
@@ -57,10 +60,11 @@ public class Candidate {
 		ID = iD;
 	}
 
+	// toString METHOD FOR TESTING
 	@Override
 	public String toString() {
 		return "Candidate [name=" + name + ", surname=" + surname + ", dateOfArribal=" + dateOfArribal
 				+ ", passportNum=" + passportNum + ", ID=" + ID + "]";
 	}
-		
+
 }

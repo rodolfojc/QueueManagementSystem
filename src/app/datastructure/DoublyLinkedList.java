@@ -47,6 +47,10 @@ public class DoublyLinkedList {
 
 		myNode.setNext(this.first);
 		this.first = myNode;
+		
+		System.out.println("Added - First" + myNode);
+		this.size++;
+		displayForward();
 
 	}
 
@@ -71,13 +75,8 @@ public class DoublyLinkedList {
 
 		// IF LIST IS EMPTY
 		if (isEmpty()) {
-			this.last = myNode;
-			myNode.setNext(this.first);
-			this.first = myNode;
-			System.out.println("Added - First" + myNode);
-			this.size++;
-			displayForward();
-
+			insertFirst(myNode);			
+			
 		} else {
 
 			// 1.- LOOP OVER THE LIST STARTING IN FIRST NODE
