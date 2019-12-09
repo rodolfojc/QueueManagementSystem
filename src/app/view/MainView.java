@@ -138,9 +138,9 @@ public class MainView extends GuiView {
 		this.addLabel(" ", personalInfo);
 		this.addLabel("Passport Number", personalInfo);
 		this.passport = this.addTextField(20, personalInfo);
-		this.addLabel("Name(s) - As on the passport", personalInfo);
+		this.addLabel("Name(s) - As it appears on the passport", personalInfo);
 		this.nameS = this.addTextField(20, personalInfo);
-		this.addLabel("Surname(s) - As on the passport", personalInfo);
+		this.addLabel("Surname(s) - As it appears on the passport", personalInfo);
 		this.surnameS = this.addTextField(20, personalInfo);
 		this.addLabel("Date of Arrival", personalInfo);
 		this.dateOfArrival = this.addCalen(personalInfo);
@@ -153,7 +153,7 @@ public class MainView extends GuiView {
 		this.addLabel("Priority level", personalInfo);
 		this.priority = this.addComboB(this.priorities, personalInfo);
 		this.addLabel(" ", personalInfo);
-		this.addButtonAll("Submit", "Add", personalInfo, this.controller);
+		this.addButtonAll("Add candidate", "Add", personalInfo, this.controller);
 		personalInfo.setBorder(new EmptyBorder(new Insets(50, 50, 50, 50)));
 
 		// QUEUE TABLE

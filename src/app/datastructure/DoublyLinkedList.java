@@ -47,7 +47,7 @@ public class DoublyLinkedList {
 
 		myNode.setNext(this.first);
 		this.first = myNode;
-		
+
 		System.out.println("Added - First" + myNode);
 		this.size++;
 		displayForward();
@@ -68,6 +68,20 @@ public class DoublyLinkedList {
 
 	}
 
+	// INSERT BETWEEN TWO DIFFERENT PRIORITIES
+	public void insertInBetween(Node lower, Node highter) {
+
+		// SET PREV ON START PREVE, NEXT NEW NODE
+		lower.getPrev().setNext(highter);
+		// SET NODE AT NEXT FOR NEW NODE
+		highter.setNext(lower);
+		// SET NODE AT PREVEUS FOR NEW NODE
+		highter.setPrev(lower.getPrev());
+		// SET CURRENT NODE TO THE NEW NODE
+		lower.setPrev(highter);
+
+	}
+
 	// INSERTING CONDITIONS
 	public void insertNode(Node myNode) {
 
@@ -75,57 +89,60 @@ public class DoublyLinkedList {
 
 		// IF LIST IS EMPTY
 		if (isEmpty()) {
-			insertFirst(myNode);			
-			
+			insertFirst(myNode);
+
 		} else {
 
 			// 1.- LOOP OVER THE LIST STARTING IN FIRST NODE
 			start = this.first;
 
-			// PRIORITY GREATER THAN THE FIRST IN THE QUEU
+			// NEW CANDIDATE PRIORITY GREATER THAN THE FIRST IN THE QUEU, NEW CANDIDATE GOES
+			// FIRST
 			if (myNode.getPriority().getLevelValue() > this.first.getPriority().getLevelValue()) {
-				System.out.println("Go 1ts " + myNode);
+				System.out.println("Go 1st " + myNode);
 				this.first.setPrev(myNode);
 				myNode.setNext(this.first);
 				this.first = myNode;
 				this.size++;
 				displayForward();
 
+				// NEW CANDIDATE PRIORITY LESS OR EQUAL TO TO THE FIRST IN THE QUEU
 			} else if (myNode.getPriority().getLevelValue() <= this.first.getPriority().getLevelValue()) {
 				System.out.println("Equal or less " + myNode);
 				System.out.println("Equal or less " + this.first.getCandidate());
+
+				// MOVING OVER THE LINKED LIST UNTIL PRIORITY CHANGE OR HIT THE TAIL
 				while ((myNode.getPriority().getLevelValue() <= start.getPriority().getLevelValue())
 						&& this.last != start) {
 					System.out.println("Equal or less " + myNode.getCandidate());
 					System.out.println("Equal or less " + start.getCandidate());
-					// System.out.println(this.last != start);
+					// HIT THE TAIL
 					if (start.getNext() == null) {
 						System.out.println("Next is Null");
 						this.last = start;
-						System.out.println(this.last != start);
+
+						// IF DO NOT HIT THE TAIL, CONTINUE TO NEXT NODE
 					} else {
 						start = start.getNext();
 						System.out.println("Next Candidate: " + start.getCandidate());
 					}
 				}
 
+				// CHECKING WERE IS THE POINTER AND WHO IS AT THE TAIL
 				System.out.println("Where it stopped: " + start.getCandidate());
 				System.out.println("Last in queu: " + this.last.getCandidate());
 
+				// POINTER IS AT THE TAIL
 				if (start == this.last) {
+					// CHECKING PRIORITIES IN LAST IN THE QUEU, IF NEW CANDIDATE IS HIGTER GO FIRST
+					// THAN THE LAST ONE
 					if (myNode.getPriority().getLevelValue() > start.getPriority().getLevelValue()) {
-						System.out.println("Here");
-						// SET PREV ON START PREVE, NEXT NEW NODE
-						start.getPrev().setNext(myNode);
-						// SET NODE AT NEXT FOR NEW NODE
-						myNode.setNext(start);
-						// SET NODE AT PREVEUS FOR NEW NODE
-						myNode.setPrev(start.getPrev());
-						// SET CURRENT NODE TO THE NEW NODE
-						start.setPrev(myNode);
+						this.insertInBetween(start, myNode);
 						this.last = start;
 						this.size++;
 						displayForward();
+						// NEW CANDIDATE PRIORITY IS LOWER THAN THE LAST IN THE QUEUE, NEW CANDIDATE
+						// GOES TO THE TAIL
 					} else {
 						this.last.setNext(myNode);
 						myNode.setPrev(this.last);
@@ -133,16 +150,10 @@ public class DoublyLinkedList {
 						this.size++;
 						displayForward();
 					}
-
+					// POINTER IS IN THE MIDDLE OF TWO DIFFERENT PRIORITIES WHERE NEW CANDIDATE
+					// PRIORITY IS HIGTER THAN NEXT CANDIDATE
 				} else {
-					// SET PREV ON START PREVE, NEXT NEW NODE
-					start.getPrev().setNext(myNode);
-					// SET NODE AT NEXT FOR NEW NODE
-					myNode.setNext(start);
-					// SET NODE AT PREVEUS FOR NEW NODE
-					myNode.setPrev(start.getPrev());
-					// SET CURRENT NODE TO THE NEW NODE
-					start.setPrev(myNode);
+					this.insertInBetween(start, myNode);
 					this.size++;
 					displayForward();
 				}
