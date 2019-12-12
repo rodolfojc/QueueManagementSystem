@@ -97,7 +97,7 @@ public class GuiView extends JFrame {
 	public JTextField addTextField(int a, JPanel panel) {
 
 		JTextField myText = new JTextField(a);
-		myText.setFont(new Font("Tahoma", Font.BOLD, 20));
+		myText.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		//myText.setBackground(new Color(59, 89, 182));
 		myText.setForeground(Color.BLACK);
 		panel.add(myText);
@@ -150,7 +150,7 @@ public class GuiView extends JFrame {
 	public JComboBox addComboB(String[] options, JPanel panel) {
 
 		JComboBox myComboBox = new JComboBox(options);
-		myComboBox.setFont(new Font("Tahoma", Font.BOLD, 20));
+		myComboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		myComboBox.setBackground(Color.WHITE);
 		//myComboBox.setBackground(new Color(59, 89, 182));
 		panel.add(myComboBox);
@@ -161,7 +161,7 @@ public class GuiView extends JFrame {
 	public JDateChooser addCalen(JPanel panel) {
 		JDateChooser myDateChooser = new JDateChooser();
 		myDateChooser.setDateFormatString("dd/MM/yyyy");
-		myDateChooser.setFont(new Font("Tahoma", Font.BOLD, 20));
+		myDateChooser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(myDateChooser);
 		return myDateChooser;
 	}
@@ -173,7 +173,7 @@ public class GuiView extends JFrame {
 
 		myTable[tableNum] = new JTable(data, columnsName);
 		myTable[tableNum].setSize(100, 200);
-		myTable[tableNum].setFont(new Font("Tahoma", Font.BOLD, 20));
+		myTable[tableNum].setFont(new Font("Tahoma", Font.PLAIN, 20));
 		myTable[tableNum].setRowHeight(30);
 		myTable[tableNum].getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 20));
 		JScrollPane myScroll = new JScrollPane(myTable[tableNum]);
