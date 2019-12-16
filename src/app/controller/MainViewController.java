@@ -278,7 +278,7 @@ public class MainViewController implements ActionListener, ListSelectionListener
 		if (e.getActionCommand().equals("Search")) {
 
 			// VALIDATING INPUT - REGEX FOR PASSPORT AS IT IS JUST ALLOW NUMBERS
-			if (this.mainView.getSearch().getText().matches(regexPassport)) {
+			if (!this.mainView.getSearch().getText().matches(regexPassport)) {
 
 				int candidateId = Integer.valueOf(this.mainView.getSearch().getText());
 
