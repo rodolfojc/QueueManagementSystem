@@ -279,9 +279,18 @@ public class MainViewController implements ActionListener, ListSelectionListener
 
 			// VALIDATING INPUT - REGEX FOR PASSPORT AS IT IS JUST ALLOW NUMBERS
 			if (!this.mainView.getSearch().getText().matches(regexPassport)) {
-
-				int candidateId = Integer.valueOf(this.mainView.getSearch().getText());
-
+				
+				int candidateId = -1;
+				
+				try {
+					
+				candidateId = Integer.valueOf(this.mainView.getSearch().getText());
+				
+				}catch (Exception error) {
+					JOptionPane.showMessageDialog(this.mainView, this.mainView.addLabelOpt("The ID must be a NUMBER"), 
+							"ID - Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
 				int pointer = 0;
 				Node start = this.myList.getFirst();
 
