@@ -1,6 +1,9 @@
 package app.view;
 
 import java.awt.Insets;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -105,6 +108,12 @@ public class UpdateInfo extends GuiView {
 		this.surnameS = this.addTextField(20, this.panel);
 		this.addLabel("Date of Arrival", this.panel);
 		this.dateOfArrival = this.addCalen(this.panel);
+		Date calToday = new Date();
+		this.dateOfArrival.setDate(calToday);
+		Calendar calMinBirth = Calendar.getInstance();
+		calMinBirth.add(Calendar.MONTH, -12);
+		this.dateOfArrival.setMinSelectableDate(calMinBirth.getTime());
+		this.dateOfArrival.setMaxSelectableDate(calToday);
 		this.addLabel("Priority level", this.panel);
 		this.priority = this.addComboB(this.priorities, this.panel);
 		this.addLabel(" ", this.panel);
