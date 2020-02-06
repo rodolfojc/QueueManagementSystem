@@ -1,7 +1,7 @@
 # Desktop App - Queue Management System
 
-## Scenario : Immigration - Ticket Queue System 
-## Data Structure Implementation: Doubly Linked List, Priority Queue (three levels)
+## Scenario : Immigration Queue Ticket System 
+## Data structure implementation: Doubly Linked List, Priority Queue (three levels)
 
 ## Main View
 
